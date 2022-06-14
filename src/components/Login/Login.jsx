@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from 'axios';
 
 import * as S from '../SignUp/style.js';
+
+import UserContext from '../../contexts/usercontext.js';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,22 +13,37 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { setToken } = useContext(UserContext);
+
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // setLoading(true);
-    // const body = {
-    //   email,
-    //   password,
-    // };
-    // try {
-    //   await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
-    //   alert('Usuário criado com sucesso!');
-    //   navigate('/');
-    // } catch (err) {
-    //   setLoading(false);
-    //   alert(err.response.data.message);
-    // }
+    e.preventDefault();
+    setLoading(true);
+
+    const body = {
+      email,
+      password,
+    };
+
+    try {
+      const {
+        data: { token },
+      } = await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
+      setToken(token);
+      navigate('/timeline');
+    } catch (err) {
+      setLoading(false);
+      alert(err.response.data.message);
+    }
   };
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token) {
+      setToken(token);
+      navigate('/timeline');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <S.SignUpWrapper>
