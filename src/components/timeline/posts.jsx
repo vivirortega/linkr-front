@@ -1,5 +1,10 @@
+import Header from '../header/header';
+
 export default function Posts() {
   return (
-    <h1>Timeline</h1>
+    <>
+      <Header />
+      <h1>Timeline</h1>
+    </>
   );
 }
