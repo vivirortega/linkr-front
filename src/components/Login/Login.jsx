@@ -55,7 +55,7 @@ const Login = () => {
           <S.Button type="submit" disabled={loading}>
             {loading ? <ThreeDots color="#fff" /> : 'Log In'}
           </S.Button>
-          <p className="link" onClick={() => navigate('/signup')}>
+          <p className="link" onClick={() => navigate('/sign-up')}>
             First time? Create an account!
           </p>
         </S.Form>
