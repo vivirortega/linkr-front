@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Posts from './components/timeline/posts';
+import Timeline from './components/timeline/timeline';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/timeline" element={<Posts />} />
+        <Route path="/timeline" element={<Timeline />} />
       </Routes>
     </BrowserRouter>
   );

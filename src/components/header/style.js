@@ -36,7 +36,7 @@ const Header = styled.header`
     align-items: center;
   }
 
-  @media (min-width: 374px) {
+  @media (min-width: 400px) {
     h1 {
         margin-left: 17px;
     }

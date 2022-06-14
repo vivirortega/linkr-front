@@ -50,12 +50,12 @@ const Form = styled.form`
     line-height: 18px;
     padding: 13px;
   }
-   .hashtag {
+  .hashtag {
     width: 502px;
     height: 66px;
-    background-color: #EFEFEF;
+    background-color: #efefef;
     border-radius: 5px;
-   }
+  }
 
   .button {
     display: flex;

@@ -18,6 +18,7 @@ const Main = styled.main`
     padding-top: 78px;
     margin-bottom: 43px;
     width: 611px;
+
   }
 `;
 
