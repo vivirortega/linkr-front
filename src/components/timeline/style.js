@@ -10,7 +10,7 @@ const Main = styled.main`
   overflow-x: hidden;
 
   h1 {
-    font-family: "Oswald", Arial;
+    font-family: 'Oswald', Arial;
     color: #ffffff;
     font-weight: 700;
     font-size: 43px;
@@ -18,7 +18,6 @@ const Main = styled.main`
     padding-top: 78px;
     margin-bottom: 43px;
     width: 611px;
-
   }
 `;
 
