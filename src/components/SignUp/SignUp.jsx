@@ -29,7 +29,7 @@ const SignUp = () => {
       navigate('/');
     } catch (err) {
       setLoading(false);
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 

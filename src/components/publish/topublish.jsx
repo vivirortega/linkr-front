@@ -1,19 +1,33 @@
 import { useState, useContext } from 'react';
 import UserContext from '../../contexts/usercontext';
 import test from '../assets/test.jpeg';
+
 import Form from './style';
 import axios from 'axios';
 
-export default function Publish() {
+export default function Publish(props) {
+   const {publish: publishVisible, user} = props;
+  
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
+  
   const { token } = useContext(UserContext);
+  
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
+
+
+  let publishDisplay = 'block';
+
+  if(!publishVisible) {
+    publishDisplay = 'none';
+  } else {
+    publishDisplay = 'block';
+  }
 
   function publish(e) {
     e.preventDefault();
@@ -39,9 +53,9 @@ export default function Publish() {
   }
 
   return (
-    <Form onSubmit={publish}>
+    <Form onSubmit={publish} display = {publishDisplay}>
       <div>
-        <img src={test} alt="icon" />
+        <img src={user.image} alt={user.name} />
         <p>What are you going to share today?</p>
       </div>
       <div className="inputs">

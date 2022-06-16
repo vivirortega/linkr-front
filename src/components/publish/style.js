@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
-  width: 611px;
+  width: 100%;
   height: 209px;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 29px;
+  display: ${(props) => props.display};
 
   img {
     width: 50px;
@@ -40,7 +42,7 @@ const Form = styled.form`
     background-color: #efefef;
     border-radius: 5px;
     border: none;
-    width: 503px;
+    width: 82%;
     height: 30px;
     color: #949494;
     font-family: "Lato";
@@ -51,7 +53,7 @@ const Form = styled.form`
     padding: 13px;
   }
   .hashtag {
-    width: 502px;
+    width: 82%;
     height: 66px;
     background-color: #efefef;
     border-radius: 5px;

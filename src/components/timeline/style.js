@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Main = styled.main`
+export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@ const Main = styled.main`
   overflow-x: hidden;
 
   h1 {
-    font-family: "Oswald", Arial;
+    font-family: 'Oswald', Arial;
     color: #ffffff;
     font-weight: 700;
     font-size: 43px;
@@ -18,8 +18,23 @@ const Main = styled.main`
     padding-top: 78px;
     margin-bottom: 43px;
     width: 611px;
-
   }
 `;
 
-export default Main;
+export const MainWrapper = styled.div`
+  width: 95%;
+  max-width: 940px;
+  margin: auto;
+`
+
+export const TrendingWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const ContentWrapper = styled.div`
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+`
