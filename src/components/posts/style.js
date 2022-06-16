@@ -7,7 +7,7 @@ const Article = styled.article`
 `;
 
 const Post = styled.section`
-  width: 611px;
+  width: 100%;
   height: 276px;
   background-color: #171717;
   border-radius: 16px;
@@ -32,6 +32,8 @@ const Post = styled.section`
     color: #ffffff;
     margin-left: 18px;
     margin-top: 19px;
+    word-break: break-word;
+    word-wrap: normal;
   }
 
   .row {
@@ -46,6 +48,8 @@ const Post = styled.section`
     color: #b7b7b7;
     word-break: break-all;
     height: 54px;
+    word-break: break-word;
+    word-wrap: normal;
   }
 
   .content {
@@ -62,8 +66,10 @@ const MainLink = styled.div`
   display: flex;
   flex-direction: row;
   border: 1px solid white;
-  width: 503px;
+  width: 82%;
   height: 155px;
+  align-self: flex-end;
+  
 
   p {
     font-family: "Lato", Arial;
@@ -71,6 +77,8 @@ const MainLink = styled.div`
     line-height: 19px;
     color: #cecece;
     font-weight: bold;
+    word-break: break-word;
+    word-wrap: normal;
   }
 
   span {
@@ -82,6 +90,8 @@ const MainLink = styled.div`
     color: #9b9595;
     margin-left: 0px;
     margin-top: 5px;
+    word-break: break-word;
+    word-wrap: normal;
   }
 
   .texts {
