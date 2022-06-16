@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.production.min';
-import test from '../assets/test.jpeg';
 import Form from './style';
 
 export default function Publish(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
-  const {publish: publishVisible} = props;
+  const {publish: publishVisible, user} = props;
   let publishDisplay = 'block';
 
   if(!publishVisible) {
@@ -25,7 +23,7 @@ export default function Publish(props) {
   return (
     <Form onSubmit={publish} display = {publishDisplay}>
       <div>
-        <img src={test} alt="icon" />
+        <img src={user.image} alt={user.name} />
         <p>What are you going to share today?</p>
       </div>
       <div className="inputs">

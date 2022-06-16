@@ -24,8 +24,7 @@ const SignUp = () => {
     };
 
     try {
-      console.log(body)
-      await axios.post(process.env.REACT_APP_API_URL + '/signup', body);
+      await axios.post('https://backend-linkr.herokuapp.com/signup', body);
       alert('Usuário criado com sucesso!');
       navigate('/');
     } catch (err) {
