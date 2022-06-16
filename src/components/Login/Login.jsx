@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const {
         data: { token },
-      } = await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
+      } = await axios.post('http://localhost:5000/signin', body);
       setToken(token);
       navigate('/timeline');
     } catch (err) {

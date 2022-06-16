@@ -1,16 +1,43 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import UserContext from '../../contexts/usercontext';
 import test from '../assets/test.jpeg';
 import Form from './style';
+import axios from 'axios';
 
 export default function Publish() {
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
-  const [link, setLink] = useState('');
+  const [url, setUrl] = useState('');
+  const { token } = useContext(UserContext);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   function publish(e) {
     e.preventDefault();
     setIsLoading(true);
+    setDescription('');
+    setUrl('');
+
+    const data = {
+      url: url,
+      description: description,
+    };
+    const promise = axios.post('http://localhost:5000/timeline', data, config);
+
+    promise.then((response) => {
+      setIsLoading(false);
+      console.log('publicado com sucesso', response);
+    });
+
+    promise.catch((error) => {
+      setIsLoading(false);
+      alert('Houve um erro ao publicar seu link');
+    });
   }
+
   return (
     <Form onSubmit={publish}>
       <div>
@@ -22,8 +49,8 @@ export default function Publish() {
           type="text"
           placeholder="http://..."
           required
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           disabled={isLoading}
         />
         <input
@@ -37,7 +64,7 @@ export default function Publish() {
       </div>
       <div className="button">
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Publishing...' : 'Publish'}
+          {isLoading ? "Publishing..." : "Publish"}
         </button>
       </div>
     </Form>
