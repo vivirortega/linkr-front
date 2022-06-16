@@ -4,6 +4,7 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   margin-top: 29px;
+  gap: 20px;
 `;
 
 const Post = styled.section`
