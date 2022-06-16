@@ -10,10 +10,11 @@ import usePersistedState from './hooks/usePersistedState.js';
 
 export default function App() {
   const [token, setToken] = usePersistedState('token', null);
+  const [user, setUser] = usePersistedState('user', null);
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ token, setToken }}>
+      <UserContext.Provider value={{ token, setToken, user, setUser }}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />

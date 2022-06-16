@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import Header from '../header/header';
 import Publish from '../publish/topublish';
 import Posts from '../posts/posts';
 import { Main, MainWrapper, TrendingWrapper, ContentWrapper } from './style';
 import Trending from '../Trending/Trending';
+
+import UserContext from '../../contexts/usercontext';
 
 export default function Timeline(props) {
   const {text, publish} = props;
@@ -10,7 +13,7 @@ export default function Timeline(props) {
     <>
       <Header />
       <Main>
-        <MainWrapper >
+        <MainWrapper>
           <h1>{text}</h1>
           <TrendingWrapper >
             <ContentWrapper >

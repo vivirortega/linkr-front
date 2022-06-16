@@ -25,7 +25,7 @@ export default function Publish(props) {
   return (
     <Form onSubmit={publish} display = {publishDisplay}>
       <div>
-        <img src={test} alt="icon" />
+        <img src={user.image} alt={user.name} />
         <p>What are you going to share today?</p>
       </div>
       <div className="inputs">
