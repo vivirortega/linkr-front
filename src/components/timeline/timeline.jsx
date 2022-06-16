@@ -5,7 +5,7 @@ import { Main, MainWrapper, TrendingWrapper, ContentWrapper } from './style';
 import Trending from '../Trending/Trending';
 
 export default function Timeline(props) {
-  const {text} = props;
+  const {text, publish} = props;
   return (
     <>
       <Header />
@@ -14,7 +14,7 @@ export default function Timeline(props) {
           <h1>{text}</h1>
           <TrendingWrapper >
             <ContentWrapper >
-              <Publish />
+              <Publish publish = {publish}/>
               <Posts />
             </ContentWrapper>
             <Trending />

@@ -24,12 +24,13 @@ const SignUp = () => {
     };
 
     try {
+      console.log(body)
       await axios.post(process.env.REACT_APP_API_URL + '/signup', body);
       alert('Usuário criado com sucesso!');
       navigate('/');
     } catch (err) {
       setLoading(false);
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 
