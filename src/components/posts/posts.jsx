@@ -1,33 +1,59 @@
-import { AiOutlineFileImage } from 'react-icons/ai';
+import { useState, useContext, useEffect } from 'react';
+import UserContext from '../../contexts/usercontext';
 import { Article, MainLink, Post } from './style';
-import test from '../assets/test.jpeg';
+import axios from 'axios';
 
 export default function Posts() {
+  const { token } = useContext(UserContext);
+  const [posts, setPosts] = useState([]);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  useEffect(() => {
+    const promise = axios.get(
+      "https://backend-linkr.herokuapp.com/timeline",
+      config
+    );
+
+    promise.then((response) => {
+      setPosts(response.data);
+    });
+
+    promise.catch((error) => {
+      console.log('erro ao pegar os posts', error);
+     
+    });
+  });
+
   return (
     <Article>
-      <Post>
+      {posts.map(({id, user_name, icon, description, title_url, description_url, url, image_url }) => { 
+        return (
+      <Post key={id}>
         <div className="row">
-          <img src={test} alt="icon" />
+          <img src={icon} alt="icon" />
           <div className="content">
-            <span>Juvenal Juvêncio</span>
+            <span>{user_name}</span>
             <p>
-              Muito maneiro esse tutorial de Material UI com React, deem uma
-              olhada!
+              {description}
             </p>
           </div>
         </div>
         <MainLink>
           <div className="texts">
-            <p>Como aplicar o Material UI em um projeto React</p>
+            <p>{title_url}</p>
             <span>
-              Hey! I have moved this tutorial to my personal blog. Same content,
-              new location. Sorry about making you click through to another page
+              {description_url}
             </span>
-            <span>https://medium.com/@pshrmn/a-simple-react-router</span>
+            <span>{url}</span>
           </div>
-          <AiOutlineFileImage size="100" />
+          <img src={image_url} className="image-url" alt="icon" />
         </MainLink>
       </Post>
+      )})}
     </Article>
   );
 }
