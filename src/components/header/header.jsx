@@ -2,18 +2,18 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import Header from './style';
-import test from '../assets/test.jpeg';
 
 import UserContext from '../../contexts/usercontext.js';
 
 export default function Head() {
   const [isOpen, setIsOpen] = useState(false);
-  const { setToken } = useContext(UserContext);
+  const { setToken, user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
+    setUser(null);
     navigate('/');
   };
 
@@ -27,7 +27,7 @@ export default function Head() {
         ) : (
           <AiOutlineDown size={20} fill="#FFFFFF" />
         )}
-        <img src={test} alt="icon" />
+        {user && <img src={user.image} alt={user.name} />}
       </div>
       {isOpen && (
         <div className="dropdown">

@@ -13,7 +13,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { setToken } = useContext(UserContext);
+  const { setToken, setUser } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +26,10 @@ const Login = () => {
 
     try {
       const {
-        data: { token },
+        data: { token, user },
       } = await axios.post('https://backend-linkr.herokuapp.com/signin', body);
       setToken(token);
+      setUser(user);
       navigate('/timeline');
     } catch (err) {
       setLoading(false);
