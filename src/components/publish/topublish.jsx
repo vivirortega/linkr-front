@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import test from '../assets/test.jpeg';
 import Form from './style';
 
-export default function Publish() {
+export default function Publish({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
@@ -14,7 +13,7 @@ export default function Publish() {
   return (
     <Form onSubmit={publish}>
       <div>
-        <img src={test} alt="icon" />
+        <img src={user.image} alt={user.name} />
         <p>What are you going to share today?</p>
       </div>
       <div className="inputs">
