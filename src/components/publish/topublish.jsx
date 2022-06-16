@@ -1,9 +1,4 @@
 import { useState } from 'react';
-<<<<<<< HEAD
-=======
-import { useEffect } from 'react/cjs/react.production.min';
-import test from '../assets/test.jpeg';
->>>>>>> e9bf367698df8c550cfd8da562eaffbb8904706d
 import Form from './style';
 
 export default function Publish(props) {
