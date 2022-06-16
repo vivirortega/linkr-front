@@ -38,6 +38,7 @@ const Post = styled.section`
   .row {
     display: flex;
     align-items: flex-start;
+    width: 100%;
   }
 
   p {
@@ -47,6 +48,7 @@ const Post = styled.section`
     color: #b7b7b7;
     word-break: break-all;
     height: 54px;
+    margin-left: 10px;
   }
 
   .content {
@@ -59,6 +61,7 @@ const Post = styled.section`
 
 const MainLink = styled.div`
   padding: 24px 19.31px 23px 19.31px;
+  position: relative;
   gap: 5px;
   display: flex;
   flex-direction: row;
@@ -88,6 +91,16 @@ const MainLink = styled.div`
   .texts {
     display: flex;
     flex-direction: column;
+  }
+
+  .image-url {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0px;
+    width: 153px;
+    height: 152px;
+    border-radius: 0px 12px 13px 0px;
   }
 `;
 

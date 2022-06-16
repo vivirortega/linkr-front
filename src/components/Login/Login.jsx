@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const {
         data: { token },
-      } = await axios.post('http://localhost:5000/signin', body);
+      } = await axios.post('https://backend-linkr.herokuapp.com/signin', body);
       setToken(token);
       navigate('/timeline');
     } catch (err) {

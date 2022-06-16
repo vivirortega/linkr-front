@@ -25,7 +25,7 @@ export default function Publish() {
       url: url,
       description: description,
     };
-    const promise = axios.post('http://localhost:5000/timeline', data, config);
+    const promise = axios.post('https://backend-linkr.herokuapp.com/timeline', data, config);
 
     promise.then((response) => {
       setIsLoading(false);

@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../contexts/usercontext';
 import { Article, MainLink, Post } from './style';
-import test from '../assets/test.jpeg';
 import axios from 'axios';
-
 
 export default function Posts() {
   const { token } = useContext(UserContext);
@@ -16,7 +14,7 @@ export default function Posts() {
 
   useEffect(() => {
     const promise = axios.get(
-      "http://localhost:5000/timeline",
+      "https://backend-linkr.herokuapp.com/timeline",
       config
     );
 
@@ -32,11 +30,11 @@ export default function Posts() {
 
   return (
     <Article>
-      {posts.map(({id, user_name, description, title_url, description_url, url }) => { 
+      {posts.map(({id, user_name, icon, description, title_url, description_url, url, image_url }) => { 
         return (
       <Post key={id}>
         <div className="row">
-          <img src={test} alt="icon" />
+          <img src={icon} alt="icon" />
           <div className="content">
             <span>{user_name}</span>
             <p>
@@ -52,7 +50,7 @@ export default function Posts() {
             </span>
             <span>{url}</span>
           </div>
-          <img src={test} alt="icon" />
+          <img src={image_url} className="image-url" alt="icon" />
         </MainLink>
       </Post>
       )})}

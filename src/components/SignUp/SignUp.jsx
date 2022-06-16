@@ -24,7 +24,7 @@ const SignUp = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/signup', body);
+      await axios.post('https://backend-linkr.herokuapp.com/signup', body);
       alert('Usuário criado com sucesso!');
       navigate('/');
     } catch (err) {
