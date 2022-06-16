@@ -1,17 +1,27 @@
 import { useState } from 'react';
 import Form from './style';
 
-export default function Publish({ user }) {
+export default function Publish(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
+  const {publish: publishVisible, user} = props;
+  let publishDisplay = 'block';
+
+  if(!publishVisible) {
+    publishDisplay = 'none';
+  } else {
+    publishDisplay = 'block';
+  }
+
+
 
   function publish(e) {
     e.preventDefault();
     setIsLoading(true);
   }
   return (
-    <Form onSubmit={publish}>
+    <Form onSubmit={publish} display = {publishDisplay}>
       <div>
         <img src={user.image} alt={user.name} />
         <p>What are you going to share today?</p>

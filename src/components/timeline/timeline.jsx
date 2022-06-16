@@ -8,7 +8,7 @@ import Trending from '../Trending/Trending';
 import UserContext from '../../contexts/usercontext';
 
 export default function Timeline(props) {
-  const { text } = props;
+  const { text, publish } = props;
   const { user } = useContext(UserContext);
 
   return (
@@ -19,7 +19,7 @@ export default function Timeline(props) {
           <h1>{text}</h1>
           <TrendingWrapper>
             <ContentWrapper>
-              <Publish user={user} />
+              <Publish user={user} publish = {publish} />
               <Posts />
             </ContentWrapper>
             <Trending />
