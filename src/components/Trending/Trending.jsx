@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import dotenv from 'dotenv';
 
 import * as S from './style.js';
 
 import UserContext from '../../contexts/usercontext.js';
 
+dotenv.config()
+
 const Trending = () => {
   const { token } = useContext(UserContext);
-  const URL = 'http://localhost:4000/hashtags';
+  const URL = process.env.REACT_APP_API_URL + '/hashtags';
   const [request, setRequest] = useState('');
   const navigate = useNavigate();
 
@@ -22,7 +25,7 @@ const Trending = () => {
     const response = await axios.get(URL, {headers: {Authorization: `Bearer ${token}`}});
     setRequest(response.data);
     } catch (error) {
-      alert(error);
+      setRequest([error.response.data.message]);
     }
 
   }
