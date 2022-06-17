@@ -69,10 +69,12 @@ const MainLink = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: row;
-  border: 1px solid white;
   width: 82%;
   height: 155px;
   align-self: flex-end;
+  margin-right: 21px;
+  border: 1px solid #4D4D4D;
+  border-radius: 11px;
   
 
   p {
