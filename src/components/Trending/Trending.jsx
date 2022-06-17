@@ -8,7 +8,7 @@ import UserContext from '../../contexts/usercontext.js';
 
 const Trending = () => {
   const { token } = useContext(UserContext);
-  const URL = 'http://localhost:4000/hashtags';
+  const URL = 'https://backend-linkr.herokuapp.com/hashtags';
   const [request, setRequest] = useState('');
   const navigate = useNavigate();
 
