@@ -33,6 +33,6 @@ $ npm start
 <h2>Deploy with: </h2>
 <div align="center">
   🔗
-  <p> <a href="">Linkr</a></p>
+  <p> <a href="https://linkr-front-pi.vercel.app/">Linkr</a></p>
 <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white">
   </div>
