@@ -8,12 +8,14 @@ import UserContext from '../../contexts/usercontext.js';
 
 const Trending = () => {
   const { token } = useContext(UserContext);
-  const URL = 'http://localhost:4000/hashtags';
+  const URL = 'https://backend-linkr.herokuapp.com/hashtags';
   const [request, setRequest] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     getTrending();
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTrending = async () => {
@@ -21,7 +23,7 @@ const Trending = () => {
     const response = await axios.get(URL, {headers: {Authorization: `Bearer ${token}`}});
     setRequest(response.data);
     } catch (error) {
-      alert(error);
+      setRequest([error.response.data.message]);
     }
 
   }
