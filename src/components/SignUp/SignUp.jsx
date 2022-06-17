@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +27,7 @@ const SignUp = () => {
     };
 
     try {
-      await axios.post('https://backend-linkr.herokuapp.com/signup', body);
+      await axios.post( process.env.REACT_APP_API_URL + '/signup', body);
       alert('Usuário criado com sucesso!');
       navigate('/');
     } catch (err) {

@@ -1,7 +1,10 @@
-import { useState, useContext, useEffect } from "react";
-import UserContext from "../../contexts/usercontext";
-import { Article, MainLink, Post } from "./style";
-import axios from "axios";
+import { useState, useContext, useEffect } from 'react';
+import UserContext from '../../contexts/usercontext';
+import { Article, MainLink, Post } from './style';
+import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 export default function Posts() {
   const { token } = useContext(UserContext);
@@ -13,10 +16,7 @@ export default function Posts() {
   };
 
   useEffect(() => {
-    const promise = axios.get(
-      "https://backend-linkr.herokuapp.com/timeline",
-      config
-    );
+    const promise = axios.get(process.env.REACT_APP_API_URL + "/timeline", config);
 
     promise.then((response) => {
       setPosts(response.data);
