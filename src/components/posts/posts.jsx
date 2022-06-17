@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../contexts/usercontext';
 import { Article, MainLink, Post } from './style';
 import axios from 'axios';
+import ReactHashtag from '@mdnm/react-hashtag';
 
 export default function Posts() {
   const { token } = useContext(UserContext);
@@ -28,9 +29,12 @@ export default function Posts() {
     });
   });
 
+
+
   return (
     <Article>
       {posts.map(({id, user_name, icon, description, title_url, description_url, url, image_url }) => { 
+        
         return (
       <Post key={id}>
         <div className="row">
@@ -38,7 +42,11 @@ export default function Posts() {
           <div className="content">
             <span>{user_name}</span>
             <p>
-              {description}
+              <ReactHashtag renderHashtag={(hashtagValue) => (
+                <div className="hashtag">{hashtagValue}</div>
+              )}>
+                {description}
+              </ReactHashtag>
             </p>
           </div>
         </div>

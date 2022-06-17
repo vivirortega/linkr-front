@@ -37,6 +37,11 @@ const Post = styled.section`
     word-wrap: normal;
   }
 
+  .hashtag {
+    display: inline;
+    font-weight: 700;
+  }
+
   .row {
     display: flex;
     align-items: flex-start;
