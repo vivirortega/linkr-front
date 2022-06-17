@@ -48,7 +48,8 @@ const Post = styled.section`
     width: 100%;
   }
 
-  p {
+  .descriptionContainer {
+    display: inline;
     font-family: "Lato";
     font-size: 17px;
     line-height: 20px;

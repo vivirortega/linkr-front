@@ -41,13 +41,13 @@ export default function Posts() {
           <img src={icon} alt="icon" />
           <div className="content">
             <span>{user_name}</span>
-            <p>
+            <div className='descriptionContainer'>
               <ReactHashtag renderHashtag={(hashtagValue) => (
                 <div className="hashtag">{hashtagValue}</div>
               )}>
                 {description}
               </ReactHashtag>
-            </p>
+            </div>
           </div>
         </div>
         <MainLink>
