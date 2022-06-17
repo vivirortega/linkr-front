@@ -23,7 +23,7 @@ const Trending = () => {
     const response = await axios.get(URL, {headers: {Authorization: `Bearer ${token}`}});
     setRequest(response.data);
     } catch (error) {
-      alert(error);
+      setRequest([error.response.data.message]);
     }
 
   }
