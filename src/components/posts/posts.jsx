@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import UserContext from "../../contexts/usercontext";
 import { Article, MainLink, Post } from "./style";
-import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 
 export default function Posts() {
@@ -65,17 +64,19 @@ export default function Posts() {
                 <div className="row">
                   <img src={icon} alt="icon" />
                   <div className="content">
-                    <span>{user_name}</span>
+                    <span className="user">{user_name}</span>
                     <p>{description}</p>
                   </div>
                 </div>
                 <MainLink>
+                  <a href={url} target="_blank">
                   <div className="texts">
                     <p>{title_url}</p>
                     <span>{description_url}</span>
                     <span>{url}</span>
                   </div>
                   <img src={image_url} className="image-url" alt="icon" />
+                  </a>
                 </MainLink>
               </Post>
             );
