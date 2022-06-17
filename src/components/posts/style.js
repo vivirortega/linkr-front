@@ -36,13 +36,19 @@ const Post = styled.section`
     word-wrap: normal;
   }
 
+  .hashtag {
+    display: inline;
+    font-weight: 700;
+  }
+
   .row {
     display: flex;
     align-items: flex-start;
     width: 100%;
   }
 
-  p {
+  .descriptionContainer {
+    display: inline;
     font-family: "Lato";
     font-size: 17px;
     line-height: 20px;

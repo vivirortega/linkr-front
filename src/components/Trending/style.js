@@ -35,6 +35,7 @@ export const SideBar = styled.aside`
 
   ul li {
     margin-bottom: 12px;
+    cursor: pointer;
   }
 
   @media (max-width: 500px) {

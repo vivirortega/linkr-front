@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../contexts/usercontext';
 import { Article, MainLink, Post } from './style';
 import axios from 'axios';
+import ReactHashtag from "react-hashtag";
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -29,7 +30,6 @@ export default function Posts() {
       );
     });
   });
-
   
    if (!posts.length) {
     return (
@@ -65,11 +65,17 @@ export default function Posts() {
                   <img src={icon} alt="icon" />
                   <div className="content">
                     <span className="user">{user_name}</span>
-                    <p>{description}</p>
+                    <div className='descriptionContainer'>
+                      <ReactHashtag renderHashtag={(hashtagValue) => (
+                        <div className="hashtag">{hashtagValue}</div>
+                      )}>
+                        {description}
+                      </ReactHashtag>
+                    </div>
                   </div>
                 </div>
                 <MainLink>
-                  <a href={url} target="_blank">
+                  <a href={url} target="_blank" rel="noreferrer">
                   <div className="texts">
                     <p>{title_url}</p>
                     <span>{description_url}</span>
@@ -85,4 +91,3 @@ export default function Posts() {
       </Article>
     );
   }
-
