@@ -1,11 +1,14 @@
-import { io } from "socket.io-client"
+import { useContext, useEffect } from "react";
+import { SocketContext } from "../../contexts/socket";
 
 export default function Search() {
-
-const socket = io("localhost:4005");
-    socket.on('connect', (num)=> {
-        console.log(`conectado no ${num}`)
-    } )
+    const socket = useContext(SocketContext);
+    useEffect(() => {
+       socket.on('connect',(skt) => {
+        console.log('alo')
+       })
+        
+    }, [])
     return (
         <input></input>
         
