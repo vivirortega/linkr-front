@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../contexts/usercontext';
 import { Article, MainLink, Post } from './style';
 import axios from 'axios';
-import ReactHashtag from '@mdnm/react-hashtag';
+import ReactHashtag from "react-hashtag";
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -75,7 +75,7 @@ export default function Posts() {
                   </div>
                 </div>
                 <MainLink>
-                  <a href={url} target="_blank">
+                  <a href={url} target="_blank" rel="noreferrer">
                   <div className="texts">
                     <p>{title_url}</p>
                     <span>{description_url}</span>
