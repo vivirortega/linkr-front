@@ -33,7 +33,7 @@ export const InputDiv = styled.div`
 `;
 export const List = styled.div`
   position: absolute;
-  display:flex;
+  display:${props => props.display};
   flex-direction: column;
   top: 36px;
   left: 3px;
