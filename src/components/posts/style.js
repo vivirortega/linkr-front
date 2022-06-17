@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Article = styled.article`
   display: flex;
   flex-direction: column;
-  margin-top: 29px;
   gap: 20px;
 `;
 
@@ -69,10 +68,12 @@ const MainLink = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: row;
-  border: 1px solid white;
   width: 82%;
   height: 155px;
   align-self: flex-end;
+  margin-right: 21px;
+  border: 1px solid #4D4D4D;
+  border-radius: 11px;
   
 
   p {
@@ -111,6 +112,10 @@ const MainLink = styled.div`
     width: 153px;
     height: 152px;
     border-radius: 0px 12px 13px 0px;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 
