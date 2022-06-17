@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
 import * as S from '../SignUp/style.js';
 
 import UserContext from '../../contexts/usercontext.js';
+
+dotenv.config()
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +30,7 @@ const Login = () => {
     try {
       const {
         data: { token, user },
-      } = await axios.post('https://backend-linkr.herokuapp.com/signin', body);
+      } = await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
       setToken(token);
       setUser(user);
       navigate('/timeline');

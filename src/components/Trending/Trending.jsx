@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import dotenv from 'dotenv';
 
 import * as S from './style.js';
 
 import UserContext from '../../contexts/usercontext.js';
 
+dotenv.config()
+
 const Trending = () => {
   const { token } = useContext(UserContext);
-  const URL = 'https://backend-linkr.herokuapp.com/hashtags';
+  const URL = process.env.REACT_APP_API_URL + '/hashtags';
   const [request, setRequest] = useState('');
   const navigate = useNavigate();
 
