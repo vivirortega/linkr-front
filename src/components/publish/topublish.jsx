@@ -1,9 +1,12 @@
 import { useState, useContext } from 'react';
 import UserContext from '../../contexts/usercontext';
 import test from '../assets/test.jpeg';
+import dotenv from 'dotenv';
 
 import Form from './style';
 import axios from 'axios';
+
+dotenv.config()
 
 export default function Publish(props) {
    const {publish: publishVisible, user} = props;
@@ -39,7 +42,7 @@ export default function Publish(props) {
       url: url,
       description: description,
     };
-    const promise = axios.post('https://backend-linkr.herokuapp.com/timeline', data, config);
+    const promise = axios.post( process.env.REACT_APP_API_URL + '/timeline', data, config);
 
     promise.then((response) => {
       setIsLoading(false);
