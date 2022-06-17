@@ -4,6 +4,7 @@ import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import Header from './style';
 
 import UserContext from '../../contexts/usercontext.js';
+import Search from '../search/search';
 
 export default function Head() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Head() {
   return (
     <Header>
       <h1>linkr</h1>
+        <Search/>
       {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
       <div onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? (
