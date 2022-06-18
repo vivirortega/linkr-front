@@ -14,12 +14,13 @@ export default function Search() {
         socket.on('search_result',(resultServer) => {
             setResult(resultServer)
            })
-    },[]);
+    });
     useEffect(() =>{
         if(target!=='') {
           return socket.emit('search-value',target)
         }
         return setResult([])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[target])
     return (
         <InputDiv>
