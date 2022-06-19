@@ -65,17 +65,21 @@ const Header = styled.header`
     color: #ffffff;
   }
 
-  @media (min-width: 400px) {
+  @media (max-width: 400px) {
     h1 {
       margin-left: 17px;
+      font-size: 45px;
     }
 
     img {
       margin-right: 16px;
+      width: 41px;
+      height: 41px;
     }
 
     svg {
       margin-right: 12px;
+    
     }
   }
 `;

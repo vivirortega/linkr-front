@@ -44,7 +44,7 @@ export default function Publish(props) {
       url: url,
       description: description,
     };
-    const promise = axios.post( process.env.REACT_APP_API_URL + '/timeline', data, config);
+    const promise = axios.post('http://localhost:5000/timeline', data, config);
 
     promise.then((response) => {
       setIsLoading(false);

@@ -19,6 +19,12 @@ export const Main = styled.main`
     margin-bottom: 43px;
     width: 611px;
   }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 33px;
+    }
+  }
 `;
 
 export const MainWrapper = styled.div`
