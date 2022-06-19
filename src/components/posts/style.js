@@ -9,12 +9,13 @@ const Article = styled.article`
 
 const Post = styled.section`
   width: 100%;
-  height: 276px;
+  min-height: 276px;
   background-color: #171717;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
   img {
     width: 50px;
@@ -49,10 +50,11 @@ const Post = styled.section`
     line-height: 20px;
     color: #b7b7b7;
     word-break: break-all;
-    height: 54px;
+    min-height: 54px;
     margin-left: 10px;
     word-break: break-word;
     word-wrap: normal;
+    margin-bottom: 5px;
   }
 
   .content {
@@ -60,6 +62,24 @@ const Post = styled.section`
     flex-direction: column;
     align-items: flex-start;
     gap: 7px;
+  }
+
+  .icon{
+    position: absolute;
+    top: 86px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  .likeCount{
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    color: white;
+    margin-top: 4px;
+    margin-right: 6px;
   }
 `;
 
@@ -70,9 +90,11 @@ const MainLink = styled.div`
   display: flex;
   flex-direction: row;
   border: 1px solid white;
+  border-radius: 11px;
   width: 82%;
   height: 155px;
   align-self: flex-end;
+  margin: 0 21px 20px 0;
   
 
   p {

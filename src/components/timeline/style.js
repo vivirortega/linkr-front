@@ -6,7 +6,7 @@ export const Main = styled.main`
   align-items: center;
   background-color: #333333;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
 
   h1 {
