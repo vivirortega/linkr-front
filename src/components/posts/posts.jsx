@@ -7,7 +7,8 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-export default function Posts({url= "/timeline"}) {
+export default function Posts(props) {
+  let { url } = props;
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const config = {
@@ -15,6 +16,8 @@ export default function Posts({url= "/timeline"}) {
       Authorization: `Bearer ${token}`,
     },
   };
+
+  if (url !== '/timeline') url = `/hashtag${url}`;
 
   useEffect(() => {
     const promise = axios.get(process.env.REACT_APP_API_URL + url, config);
@@ -28,7 +31,8 @@ export default function Posts({url= "/timeline"}) {
         "An error occured while trying to fetch the posts, please refresh the page"
       );
     });
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
   
    if (!posts.length) {
     return (

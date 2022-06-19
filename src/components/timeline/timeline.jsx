@@ -20,7 +20,7 @@ export default function Timeline(props) {
           <TrendingWrapper>
             <ContentWrapper>
               <Publish user={user} publish = {publish} />
-              <Posts />
+              <Posts url = {`/${text}`} />
             </ContentWrapper>
             <Trending />
           </TrendingWrapper>
