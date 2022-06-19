@@ -8,10 +8,12 @@ import HashtagPage from './components/HashtagPage/HashtagPage';
 import UserContext from './contexts/usercontext.js';
 import usePersistedState from './hooks/usePersistedState.js';
 import { socket, SocketContext } from './contexts/socket';
+import UserPage from './components/userPage/userPage';
 
 export default function App() {
   const [token, setToken] = usePersistedState('token', null);
   const [user, setUser] = usePersistedState('user', null);
+
 
   return (
     <BrowserRouter>
@@ -22,6 +24,7 @@ export default function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/timeline" element={<Timeline text = {'timeline'} publish = {true} />} />
           <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
+          <Route path="/users/:id" element={<UserPage/>}/>
         </Routes>
         </SocketContext.Provider>
       </UserContext.Provider>

@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-export default function Posts() {
+export default function Posts({url= "/timeline"}) {
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const config = {
@@ -17,8 +17,7 @@ export default function Posts() {
   };
 
   useEffect(() => {
-    const promise = axios.get(process.env.REACT_APP_API_URL + "/timeline", config);
-
+    const promise = axios.get(process.env.REACT_APP_API_URL + url, config);
     promise.then((response) => {
       setPosts(response.data);
     });
