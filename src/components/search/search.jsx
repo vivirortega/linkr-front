@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../../contexts/socket";
-import { Input,InputDiv,List } from './style.js';
+import { InputDiv,List } from './style.js';
 import {ReactComponent as SearchSvg} from '../assets/svg/search-outline.svg'
 import { useNavigate } from "react-router-dom";
+import {DebounceInput} from 'react-debounce-input';
+
 
 export default function Search() {
     const socket = useContext(SocketContext);
     const [target,setTarget] = useState('');
     const [result,setResult] = useState([]);
-    const [listDisplay,setListDisplay] = useState(false)
     const navigate = useNavigate();
+    
     useEffect(() => {
         socket.on('search_result',(resultServer) => {
             setResult(resultServer)
@@ -24,19 +26,20 @@ export default function Search() {
     },[target])
     return (
         <InputDiv>
-        <Input
+        <DebounceInput
+            minLength={3}
+            debounceTimeout={300}
             type="text"
             placeholder="Search users..."
             value={target}
             onChange={(e) => setTarget(e.target.value)}
-            onFocus={()=>setListDisplay(true)}
             required
           />
-          <List display={listDisplay?'initial':'none'}>
+          <List>
             {result?.map((user,index) => {
                 if(user==='not found') {
                     return (
-                        <div className="user">
+                        <div className="user" key={index}>
                             <p>No result</p>
                         </div>
                     )
