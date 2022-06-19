@@ -68,10 +68,14 @@ const PostWrapper = styled.section`
     gap: 7px;
   }
 
-  .trash-icon {
+  .icons {
     position: absolute;
     right: 15px;
     top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
     cursor: pointer;
   }
 `;

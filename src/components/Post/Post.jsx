@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { MainLink, PostWrapper } from './style';
 import ReactHashtag from 'react-hashtag';
-import { BsFillTrashFill } from 'react-icons/bs';
+import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 
 import UserContext from '../../contexts/usercontext';
 
@@ -22,7 +22,10 @@ const Post = ({ publishing }) => {
   return (
     <PostWrapper>
       {user_name === user.name && (
-        <BsFillTrashFill className="trash-icon" size={15} fill={'#FFFFFF'} />
+        <div className="icons">
+          <BsFillPencilFill size={15} fill={'#FFFFFF'} />
+          <BsFillTrashFill size={15} fill={'#FFFFFF'} />
+        </div>
       )}
       <div className="row">
         <img src={icon} alt="icon" />
