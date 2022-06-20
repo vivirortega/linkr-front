@@ -23,7 +23,6 @@ export default function Posts(props) {
   useEffect(() => {
     const promise = axios.get(process.env.REACT_APP_API_URL + url, config);
     promise.then((response) => {
-      console.log(response.data )
       setPosts(response.data);
     });
 
