@@ -9,19 +9,17 @@ const Article = styled.article`
 const PostWrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 276px;
   background-color: #171717;
   border-radius: 16px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 20px;
+  align-items: flex-start;
+  gap: 18px;
 
   img {
     width: 50px;
     height: 50px;
     border-radius: 26.5px;
-    margin-left: 18px;
-    margin-top: 17px;
   }
 
   span {
@@ -31,10 +29,23 @@ const PostWrapper = styled.section`
     font-size: 19px;
     line-height: 23px;
     color: #ffffff;
-    margin-left: 18px;
-    margin-top: 19px;
     word-break: break-word;
     word-wrap: normal;
+  }
+
+  textarea {
+    background: #ffffff;
+    border-radius: 7px;
+    padding: 5px 10px;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+
+    font-family: 'Lato';
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #4c4c4c;
   }
 
   .hashtag {
@@ -48,6 +59,15 @@ const PostWrapper = styled.section`
     width: 100%;
   }
 
+  .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 7px;
+    width: 100%;
+    height: 100%;
+  }
+
   .descriptionContainer {
     display: inline;
     font-family: 'Lato';
@@ -55,8 +75,7 @@ const PostWrapper = styled.section`
     line-height: 20px;
     color: #b7b7b7;
     word-break: break-all;
-    height: 54px;
-    margin-left: 10px;
+    margin-bottom: 5px;
     word-break: break-word;
     word-wrap: normal;
   }
@@ -86,10 +105,7 @@ const MainLink = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: row;
-  width: 82%;
   height: 155px;
-  align-self: flex-end;
-  margin-right: 21px;
   border: 1px solid #4d4d4d;
   border-radius: 11px;
 

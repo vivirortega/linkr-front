@@ -48,19 +48,22 @@ export default function Posts({ url = '/timeline' }) {
   return (
     <Article>
       {posts.map(
-        ({
-          id,
-          user_name,
-          icon,
-          description,
-          title_url,
-          description_url,
-          url,
-          image_url,
-        }) => {
+        (
+          {
+            id,
+            user_name,
+            icon,
+            description,
+            title_url,
+            description_url,
+            url,
+            image_url,
+          },
+          index,
+        ) => {
           return (
             <Post
-              key={id}
+              key={index}
               publishing={{
                 id,
                 user_name,
