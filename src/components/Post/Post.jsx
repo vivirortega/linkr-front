@@ -52,7 +52,7 @@ const Post = ({ publishing, getPosts }) => {
       getPosts();
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      alert(error.message);
     }
     setEditing(!editing);
   };
