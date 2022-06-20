@@ -15,34 +15,40 @@ export default function Posts(props) {
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
+    
   if (url !== '/timeline') url = `/hashtag${url}`;
 
   useEffect(() => { }, [reload])
+  
+  const getPosts = async () => {
+    const URL = `${process.env.REACT_APP_API_URL}${url}`;
 
 
-
-  useEffect(() => {
-    const promise = axios.get(process.env.REACT_APP_API_URL + url, config);
-    promise.then((response) => {
-      console.log(response.data)
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    
+    try {
+      const response = await axios.get(URL, config);
+      console.log(response.data);     
       setPosts(response.data);
-      setReload(!reload)
-    });
-
-    promise.catch((error) => {
+      setReload(!reload);
+    } catch (error) {
       console.log('erro ao pegar os posts', error);
       alert(
         'An error occured while trying to fetch the posts, please refresh the page',
       );
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+    }
+  };
+
+  useEffect(() => {}, [reload]);
+
+  useEffect(() => {
+    getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
    if (!posts.length) {
 
@@ -60,47 +66,47 @@ export default function Posts(props) {
       </div>
     );
   }
+  
   return (
     <Article>
-  {
-    posts.map(
-      (
-        {
-          post_id,
-          user_name,
-          icon,
-          description,
-          title_url,
-          description_url,
-          url,
-          image_url,
-          tooltipText,
-          liked,
-          like_count
+      {posts.map(
+        (
+          {
+            post_id,
+            user_name,
+            icon,
+            description,
+            title_url,
+            description_url,
+            url,
+            image_url,
+            tooltipText,
+            liked,
+            like_count,
+          },
+          index,
+        ) => {
+          return (
+            <Post
+              key={index}
+              publishing={{
+                post_id,
+                user_name,
+                icon,
+                description,
+                title_url,
+                description_url,
+                url,
+                image_url,
+                tooltipText,
+                liked,
+                like_count,
+              }}
+              getPosts={getPosts}
+            />
+          );
         },
-        index,
-      ) => {
-        return (
-          <Post
-            key={index}
-            publishing={{
-              post_id,
-              user_name,
-              icon,
-              description,
-              title_url,
-              description_url,
-              url,
-              image_url,
-              tooltipText,
-              liked,
-              like_count
-            }}
-          />
-        );
-      },
-    )
-  }
-    </Article >
+      )}
+    </Article>
   );
 }
