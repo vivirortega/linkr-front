@@ -29,6 +29,7 @@ export const InputDiv = styled.div`
     &::placeholder {
       color: #c6c6c6;
     }
+    
   }
 `;
 export const List = styled.div`

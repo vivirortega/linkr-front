@@ -58,6 +58,7 @@ export default function Posts({ url = '/timeline' }) {
             description_url,
             url,
             image_url,
+
           },
           index,
         ) => {
