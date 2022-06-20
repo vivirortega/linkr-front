@@ -16,7 +16,7 @@ export default function Posts(props) {
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
     
-  if (url !== '/timeline'&&url[1] !=='u') url = `/hashtag${url}`;
+  if (url !== '/timeline'&&url[0]+url[1] !=='/u') url = `/hashtag${url}`;
 
   useEffect(() => { }, [reload])
   
@@ -43,7 +43,7 @@ export default function Posts(props) {
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url]);
   
    if (!posts.length) {
 
