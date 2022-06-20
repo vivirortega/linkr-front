@@ -19,6 +19,11 @@ export const Main = styled.main`
     margin-bottom: 43px;
     width: 611px;
   }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const MainWrapper = styled.div`
