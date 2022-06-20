@@ -23,8 +23,7 @@ const Post = ({ publishing }) => {
   const [editing, setEditing] = useState(false);
   const [description_edit, setDescriptionEdit] = useState(description);
 
-  const handleEdit = (e) => {
-    e.preventDefault();
+  const handleEdit = () => {
     setEditing(!editing);
   };
 
@@ -33,7 +32,9 @@ const Post = ({ publishing }) => {
       {user_name === user.name && (
         <div className="icons">
           <BsFillPencilFill
-            onClick={() => setEditing(!editing)}
+            onClick={() => {
+              setEditing(!editing);
+            }}
             size={15}
             fill={'#FFFFFF'}
           />
@@ -46,29 +47,37 @@ const Post = ({ publishing }) => {
           <span className="user">{user_name}</span>
         </div>
         {editing ? (
-          <form onSubmit={handleEdit}>
-            <textarea
-              ref={textAreaRef}
-              style={
-                textAreaRef.current
-                  ? { height: textAreaRef.current.scrollHeight }
-                  : { height: '5px' }
+          <textarea
+            ref={textAreaRef}
+            style={
+              textAreaRef.current
+                ? { height: textAreaRef.current.scrollHeight }
+                : { height: '5px' }
+            }
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleEdit();
               }
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  handleEdit(e);
-                }
-              }}
-              value={description_edit}
-              onChange={(e) => setDescriptionEdit(e.target.value)}
-            />
-          </form>
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setEditing(false);
+              }
+            }}
+            value={description_edit}
+            onChange={(e) => setDescriptionEdit(e.target.value)}
+          />
         ) : (
           <div className="descriptionContainer">
             <ReactHashtag
               renderHashtag={(hashtagValue) => (
-                <div className="hashtag">{hashtagValue}</div>
+                <div
+                  key={hashtagValue + (Math.random() * 100).toString()}
+                  className="hashtag"
+                >
+                  {hashtagValue}
+                </div>
               )}
             >
               {description}
