@@ -30,7 +30,7 @@ const Login = () => {
     try {
       const {
         data: { token, user },
-      } = await axios.post('http://localhost:5000/signin', body);
+      } = await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
       setToken(token);
       setUser(user);
       navigate('/timeline');

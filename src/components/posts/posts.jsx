@@ -17,7 +17,7 @@ export default function Posts({url= "/timeline"}) {
   };
 
   useEffect(() => {
-    const promise = axios.get('http://localhost:5000/timeline', config);
+    const promise = axios.get(process.env.REACT_APP_API_URL + url, config);
     promise.then((response) => {
       setPosts(response.data);
     });

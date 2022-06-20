@@ -27,7 +27,7 @@ const SignUp = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/signup', body);
+      await axios.post( process.env.REACT_APP_API_URL + '/signup', body);
       alert('Usuário criado com sucesso!');
       navigate('/');
     } catch (err) {
