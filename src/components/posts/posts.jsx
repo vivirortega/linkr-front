@@ -29,7 +29,6 @@ export default function Posts(props) {
         Authorization: `Bearer ${token}`,
       },
     };
-    
     try {
       const response = await axios.get(URL, config);    
       setPosts(response.data);
