@@ -89,7 +89,7 @@ const Post = ({ publishing }) => {
             <div className="texts">
               <p>{title_url}</p>
               <span>{description_url}</span>
-              <span>{url}</span>
+              <span className="url">{url}</span>
             </div>
             <img src={image_url} className="image-url" alt="icon" />
           </a>
