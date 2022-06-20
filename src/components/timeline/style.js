@@ -6,7 +6,7 @@ export const Main = styled.main`
   align-items: center;
   background-color: #333333;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
 
   h1 {
@@ -19,6 +19,11 @@ export const Main = styled.main`
     margin-bottom: 43px;
     width: 611px;
   }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+   }
 
   @media (max-width: 500px) {
     h1 {
@@ -36,16 +41,20 @@ export const MainWrapper = styled.div`
     overflow-x: hidden;
     width: 100%;
   }
-`
+`;
 
 export const TrendingWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 export const ContentWrapper = styled.div`
   width: 66%;
   display: flex;
   flex-direction: column;
-`
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;

@@ -14,12 +14,13 @@ const Article = styled.article`
 const PostWrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 276px;
+  min-height: 276px;
   background-color: #171717;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
   @media (max-width: 500px) {
    border-radius: 0px;
@@ -81,17 +82,20 @@ const PostWrapper = styled.section`
     line-height: 20px;
     color: #b7b7b7;
     word-break: break-all;
-    height: 54px;
-    margin-left: 18px;
+
+    min-height: 54px;
     word-break: break-word;
     word-wrap: normal;
+    margin-bottom: 5px;
 
+    margin-left: 18px;
     @media (max-width: 500px) {
     font-size: 15px;
     margin-left: 14px;
     height: auto;
     margin-bottom: 13px;
   }
+
   }
 
   .content {
@@ -106,6 +110,24 @@ const PostWrapper = styled.section`
     right: 15px;
     top: 15px;
     cursor: pointer;
+  }
+
+  .icon{
+    position: absolute;
+    top: 86px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  .likeCount{
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    color: white;
+    margin-top: 4px;
+    margin-right: 6px;
   }
 `;
 

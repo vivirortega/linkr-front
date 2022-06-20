@@ -20,7 +20,9 @@ export default function Head() {
 
   return (
     <Header>
-      <h1>linkr</h1>
+      <h1 onClick = {()=>{
+        navigate('/')
+      }}>linkr</h1>
         <Search/>
       {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
       <div onClick={() => setIsOpen(!isOpen)}>
