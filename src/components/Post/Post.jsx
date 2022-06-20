@@ -79,7 +79,7 @@ const Post = ({ publishing }) => {
             </ReactHashtag>
           </div>
         )}
-        <div className="icon">
+        <div className="likeIcon">
           <Likes tooltipText={tooltipText} liked={liked} like_count={like_count} post_id={post_id}/>
         </div>
         <MainLink>

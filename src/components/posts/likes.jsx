@@ -57,7 +57,7 @@ export default function Likes(props) {
                     }} />
                 </IconContext.Provider>
             }
-            <p data-tip='' data-offset="{'top':35}" data-for={post_id.toString()} className="likeCount">{likeCount} Likes</p>
+            <p data-tip=''  data-for={post_id.toString()} className="likeCount">{likeCount} Likes</p>
             <ReactTooltip id={post_id.toString()} place="bottom" type="light" effect="solid">
                 {tooltipText}
             </ReactTooltip>

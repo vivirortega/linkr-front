@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../contexts/usercontext';
+import ReactTooltip from 'react-tooltip';
 
 import Post from '../Post/Post';
 import { Article } from './style';
