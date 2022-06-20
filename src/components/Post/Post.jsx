@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { MainLink, PostWrapper } from './style';
+import { MainLink, PostWrapper, ModalStyle, OverlayStyle } from './style';
 import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import axios from 'axios';
@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 import Likes from '../posts/likes.jsx';
 import UserContext from '../../contexts/usercontext';
+
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 const Post = ({ publishing, getPosts }) => {
   const { user, token } = useContext(UserContext);
@@ -30,6 +33,20 @@ const Post = ({ publishing, getPosts }) => {
   const [descriptionEdit, setDescriptionEdit] = useState(description);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const handleEdit = async () => {
     const URL = `${process.env.REACT_APP_API_URL}/timeline/${post_id}`;
@@ -75,10 +92,45 @@ const Post = ({ publishing, getPosts }) => {
 
   return (
     <PostWrapper>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        contentLabel="Delete Modal"
+        className="_"
+        overlayClassName="_"
+        contentElement={(props, children) => (
+          <ModalStyle {...props}>{children}</ModalStyle>
+        )}
+        overlayElement={(props, contentElement) => (
+          <OverlayStyle {...props}>{contentElement}</OverlayStyle>
+        )}
+      >
+        <h1>Are you sure you want to delete this post?</h1>
+        <div className="buttons">
+          <button className="white" onClick={closeModal}>
+            No, go back
+          </button>
+          <button
+            className="blue"
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            Yes, delete it
+          </button>
+        </div>
+      </Modal>
       {user_name === user.name && (
         <div className="icons">
           <BsFillPencilFill onClick={openEditor} size={15} fill={'#FFFFFF'} />
-          <BsFillTrashFill size={15} fill={'#FFFFFF'} />
+          <BsFillTrashFill
+            onClick={() => {
+              openModal();
+            }}
+            size={15}
+            fill={'#FFFFFF'}
+          />
         </div>
       )}
       <img src={icon} alt="icon" />
