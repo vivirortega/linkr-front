@@ -9,23 +9,30 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default function Posts({ url = '/timeline' }) {
+
+export default function Posts(props) {
+  let { url } = props;
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
+    
+  if (url !== '/timeline') url = `/hashtag${url}`;
 
+  useEffect(() => { }, [reload])
+  
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
+
 
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-
+    
     try {
       const response = await axios.get(URL, config);
-      console.log(response.data);
+      console.log(response.data);     
       setPosts(response.data);
       setReload(!reload);
     } catch (error) {
@@ -40,9 +47,11 @@ export default function Posts({ url = '/timeline' }) {
 
   useEffect(() => {
     getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
+   if (!posts.length) {
 
-  if (!posts.length) {
     return (
       <div align="center">
         <span
@@ -57,6 +66,7 @@ export default function Posts({ url = '/timeline' }) {
       </div>
     );
   }
+  
   return (
     <Article>
       {posts.map(

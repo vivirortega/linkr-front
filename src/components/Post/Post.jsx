@@ -3,6 +3,7 @@ import { MainLink, PostWrapper } from './style';
 import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import Likes from '../posts/likes.jsx';
 import UserContext from '../../contexts/usercontext';
@@ -27,6 +28,7 @@ const Post = ({ publishing, getPosts }) => {
 
   const [editing, setEditing] = useState(false);
   const [descriptionEdit, setDescriptionEdit] = useState(description);
+  const navigate = useNavigate();
 
   const handleEdit = async () => {
     const URL = `${process.env.REACT_APP_API_URL}/timeline/${post_id}`;
@@ -49,7 +51,6 @@ const Post = ({ publishing, getPosts }) => {
     } catch (error) {
       console.log(error);
     }
-
     setEditing(!editing);
   };
 
@@ -109,6 +110,11 @@ const Post = ({ publishing, getPosts }) => {
                 <div
                   key={hashtagValue + (Math.random() * 100).toString()}
                   className="hashtag"
+                  onClick = {()=>{
+                    const hashtagArr = hashtagValue.split('#');
+                    const hashtagText = hashtagArr[hashtagArr.length-1];
+                    navigate(`/hashtag/${hashtagText}`);
+                  }}
                 >
                   {hashtagValue}
                 </div>
