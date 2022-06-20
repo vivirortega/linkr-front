@@ -4,6 +4,7 @@ import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner';
 
 import Likes from '../posts/likes.jsx';
 import UserContext from '../../contexts/usercontext';
@@ -74,6 +75,29 @@ const Post = ({ publishing, getPosts }) => {
     setEditing(!editing);
   };
 
+  const handleDelete = async () => {
+    const URL = `${process.env.REACT_APP_API_URL}/timeline/${post_id}`;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.delete(URL, config);
+      console.log(response.data);
+      setLoading(false);
+      setIsOpen(false);
+      getPosts();
+    } catch (error) {
+      setLoading(false);
+      setIsOpen(false);
+      alert(error.message);
+    }
+  };
+
   const openEditor = () => {
     setEditing(!editing);
   };
@@ -111,13 +135,8 @@ const Post = ({ publishing, getPosts }) => {
           <button className="white" onClick={closeModal}>
             No, go back
           </button>
-          <button
-            className="blue"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Yes, delete it
+          <button className="blue" onClick={handleDelete}>
+            {loading ? <ThreeDots color="#fff" /> : 'Yes, delete'}
           </button>
         </div>
       </Modal>
