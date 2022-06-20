@@ -4,7 +4,7 @@ import { Article, MainLink, Post } from './style';
 import axios from 'axios';
 import ReactHashtag from 'react-hashtag';
 import dotenv from 'dotenv';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 dotenv.config();
 
