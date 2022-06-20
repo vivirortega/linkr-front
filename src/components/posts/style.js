@@ -4,8 +4,9 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
    gap: 16px;
   }
 `;
@@ -19,7 +20,7 @@ const Post = styled.section`
   flex-direction: column;
   align-items: center;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
    border-radius: 0px;
    width: 375px;
    height: 232px;
@@ -32,7 +33,7 @@ const Post = styled.section`
     margin-left: 18px;
     margin-top: 17px;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     width: 40px;
     height: 40px;
   }
@@ -50,7 +51,7 @@ const Post = styled.section`
     word-break: break-word;
     word-wrap: normal;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     font-size: 17px;
     margin-left: 14px;
   }
@@ -79,7 +80,7 @@ const Post = styled.section`
     word-break: break-word;
     word-wrap: normal;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     font-size: 15px;
     margin-left: 14px;
     height: auto;
@@ -108,7 +109,7 @@ const MainLink = styled.div`
   border: 1px solid #4D4D4D;
   border-radius: 11px;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     width: 278px;
     height: 115px;
     padding: 1px 1px 1px 13px;
@@ -124,7 +125,7 @@ const MainLink = styled.div`
     word-break: break-word;
     word-wrap: normal;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     font-size: 11px;
   }
   }
@@ -140,7 +141,7 @@ const MainLink = styled.div`
     word-break: break-all;
     width: 70%;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     font-size: 9px;
     width: 150px;
     margin-top: 3px;
@@ -154,7 +155,7 @@ const MainLink = styled.div`
     font-size: 11px;
     color: #CECECE;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     font-size: 9px;
   }
   }
@@ -173,7 +174,7 @@ const MainLink = styled.div`
     height: 152px;
     border-radius: 0px 12px 13px 0px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
     width: 95px;
     height: 114px;
   }

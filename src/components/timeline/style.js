@@ -20,7 +20,7 @@ export const Main = styled.main`
     width: 611px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     h1 {
       font-size: 33px;
     }
@@ -28,9 +28,14 @@ export const Main = styled.main`
 `;
 
 export const MainWrapper = styled.div`
-  width: 95%;
+  width: 100%;
   max-width: 940px;
   margin: auto;
+
+  @media (max-width: 400px) {
+    overflow-x: hidden;
+    width: 100%;
+  }
 `
 
 export const TrendingWrapper = styled.div`

@@ -9,7 +9,7 @@ const Form = styled.form`
   margin-bottom: 29px;
   display: ${(props) => props.display};
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     
       width: 375px;
       height: 164px;
@@ -60,7 +60,7 @@ const Form = styled.form`
     margin-left: 60px;
     gap: 5px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
       margin-left: 0px;
       margin-top: 10px;
     }
@@ -80,7 +80,7 @@ const Form = styled.form`
     line-height: 18px;
     padding: 13px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
       width: 345px;
       height: 30px;
     }
@@ -91,7 +91,7 @@ const Form = styled.form`
     background-color: #efefef;
     border-radius: 5px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
       width: 344px;
       height: 47px;
     }
@@ -115,7 +115,7 @@ const Form = styled.form`
     font-weight: 700;
     margin-bottom: 16px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
       height: 22px;
     }
   }
