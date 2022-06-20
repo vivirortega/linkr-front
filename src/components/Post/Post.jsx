@@ -2,6 +2,7 @@ import React, { useState, useContext, useRef } from 'react';
 import { MainLink, PostWrapper } from './style';
 import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 import Likes from '../posts/likes.jsx'
 import UserContext from '../../contexts/usercontext';
@@ -26,6 +27,8 @@ const Post = ({ publishing }) => {
 
   const [editing, setEditing] = useState(false);
   const [description_edit, setDescriptionEdit] = useState(description);
+  const navigate = useNavigate();
+  
 
   const handleEdit = () => {
     setEditing(!editing);
@@ -87,6 +90,11 @@ const Post = ({ publishing }) => {
                 <div
                   key={hashtagValue + (Math.random() * 100).toString()}
                   className="hashtag"
+                  onClick = {()=>{
+                    const hashtagArr = hashtagValue.split('#');
+                    const hashtagText = hashtagArr[hashtagArr.length-1];
+                    navigate(`/hashtag/${hashtagText}`);
+                  }}
                 >
                   {hashtagValue}
                 </div>

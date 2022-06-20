@@ -8,6 +8,15 @@ export const SideBar = styled.aside`
   font-family: 'Oswald', sans-serif;
   border-radius: 16px;
   padding: 9px 16px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar on  Firefox */
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
 
   h2 {
     font-style: normal;
