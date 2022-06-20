@@ -28,7 +28,7 @@ export default function Posts({ url = '/timeline' }) {
         'An error occured while trying to fetch the posts, please refresh the page',
       );
     });
-  });
+  },[]);
 
   if (!posts.length) {
     return (
