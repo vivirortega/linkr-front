@@ -6,9 +6,9 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   background-color: #151515;
-  width: 100vw;
+  width: 100%;
   height: 72px;
-  overflow-x: hidden;
+  z-index: 1;
 
   h1 {
     color: #ffffff;
@@ -32,7 +32,7 @@ const Header = styled.header`
   }
 
   .overlay {
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,14 +42,14 @@ const Header = styled.header`
   }
 
   div {
-    z-index: 2;
+    z-index: 3;
     display: flex;
     align-items: center;
     cursor: pointer;
   }
 
   .dropdown {
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     top: 72px;
     right: 0;

@@ -4,6 +4,13 @@ export const InputDiv = styled.div`
   position: relative;
   width: 250px;
   height: 35px;
+  @media (max-width: 500px) {
+    position:absolute;
+    left:0;
+    top:72px;
+    height:35px;
+    width: 100%;
+  }
   svg {
     position: absolute;
     height: 20px;
@@ -14,12 +21,16 @@ export const InputDiv = styled.div`
   input {
     padding: 0 10px;
     min-width: 250px;
+    width:100%;
     height: 35px;
     background: #ffffff;
     border-radius: 8px;
     font-family: "Lato";
     font-size: 19px;
     line-height: 23px;
+    @media (max-width: 500px) {
+      border-radius: 0;
+    }
     &:focus {
       border: none;
       outline-color: #c6c6c6;

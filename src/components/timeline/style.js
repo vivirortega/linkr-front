@@ -1,29 +1,35 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #333333;
-  width: 100vw;
-  min-height: 100vh;
-  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
 
   h1 {
-    font-family: 'Oswald', Arial;
+    font-family: "Oswald", Arial;
     color: #ffffff;
     font-weight: 700;
     font-size: 43px;
     line-height: 64px;
     padding-top: 78px;
     margin-bottom: 43px;
-    width: 611px;
+    img {
+      position: relative;
+      top: 10px;
+      border-radius: 70%;
+      height: 60px;
+      width: 60px;
+      margin-right: 20px;
+    }
   }
 
   .loading {
     display: flex;
     justify-content: center;
-   }
+  }
 
   @media (max-width: 500px) {
     h1 {

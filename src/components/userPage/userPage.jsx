@@ -6,7 +6,6 @@ import Posts from "../posts/posts";
 import { ContentWrapper, Main, MainWrapper, TrendingWrapper } from "../timeline/style";
 import Trending from "../Trending/Trending";
 import 'dotenv/config';
-import { Img } from "./styles";
 
 export default function UserPage() {
     const {id} = useParams();
@@ -26,7 +25,7 @@ export default function UserPage() {
       <Header />
       <Main>
         <MainWrapper>
-          <h1> <Img src={image} alt={`${name} profile image.`}/> {`${name}'s timeline`}</h1>
+          <h1> <img src={image} alt={`${name} profile.`}/> {`${name}'s timeline`}</h1>
           <TrendingWrapper>
             <ContentWrapper>
               <Posts url={`/users/${id}`} />
