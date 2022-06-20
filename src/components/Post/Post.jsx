@@ -27,6 +27,11 @@ const Post = ({ publishing }) => {
     setEditing(!editing);
   };
 
+  const growTextArea = (element) => {
+    element.style.height = 'auto';
+    element.style.height = `${element.scrollHeight}px`;
+  };
+
   return (
     <PostWrapper>
       {user_name === user.name && (
@@ -54,6 +59,9 @@ const Post = ({ publishing }) => {
                 ? { height: textAreaRef.current.scrollHeight }
                 : { height: '5px' }
             }
+            onFocus={(e) => {
+              growTextArea(e.target);
+            }}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();

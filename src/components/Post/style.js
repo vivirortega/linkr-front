@@ -18,13 +18,12 @@ const PostWrapper = styled.section`
 
   @media (max-width: 500px) {
     border-radius: 0px;
-    height: 232px;
   }
 
   img {
     width: 50px;
     height: 50px;
-    border-radius: 26.5px;
+    border-radius: 50%;
 
     @media (max-width: 500px) {
       width: 40px;
@@ -44,7 +43,6 @@ const PostWrapper = styled.section`
 
     @media (max-width: 500px) {
       font-size: 17px;
-      margin-left: 14px;
     }
   }
 
@@ -53,7 +51,6 @@ const PostWrapper = styled.section`
     border-radius: 7px;
     padding: 5px 10px;
     width: 100%;
-    resize: none;
     overflow: hidden;
 
     font-family: 'Lato';
@@ -96,9 +93,7 @@ const PostWrapper = styled.section`
 
     @media (max-width: 500px) {
       font-size: 15px;
-      margin-left: 14px;
       height: auto;
-      margin-bottom: 13px;
     }
   }
 
@@ -132,9 +127,8 @@ const MainLink = styled.div`
   border-radius: 11px;
 
   @media (max-width: 500px) {
-    width: 278px;
     height: 115px;
-    padding: 1px 1px 1px 13px;
+    padding: 10px 10px 10px 13px;
   }
 
   p {
@@ -160,8 +154,6 @@ const MainLink = styled.div`
     color: #9b9595;
     margin-left: 0px;
     margin-top: 5px;
-    /* word-break: break-word;
-    word-wrap: normal; */
     word-break: break-all;
     width: 70%;
 

@@ -36,16 +36,20 @@ export const MainWrapper = styled.div`
     overflow-x: hidden;
     width: 100%;
   }
-`
+`;
 
 export const TrendingWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 export const ContentWrapper = styled.div`
   width: 66%;
   display: flex;
   flex-direction: column;
-`
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;
