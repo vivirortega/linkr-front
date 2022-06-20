@@ -4,6 +4,11 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+
+  @media (max-width: 500px) {
+   gap: 16px;
+  }
 `;
 
 const PostWrapper = styled.section`
@@ -17,12 +22,23 @@ const PostWrapper = styled.section`
   align-items: center;
   position: relative;
 
+  @media (max-width: 500px) {
+   border-radius: 0px;
+   width: 375px;
+   height: 232px;
+  }
+
   img {
     width: 50px;
     height: 50px;
     border-radius: 26.5px;
     margin-left: 18px;
     margin-top: 17px;
+
+  @media (max-width: 500px) {
+    width: 40px;
+    height: 40px;
+  }
   }
 
   span {
@@ -36,6 +52,11 @@ const PostWrapper = styled.section`
     margin-top: 19px;
     word-break: break-word;
     word-wrap: normal;
+
+    @media (max-width: 500px) {
+    font-size: 17px;
+    margin-left: 14px;
+  }
   }
 
   .hashtag {
@@ -56,11 +77,20 @@ const PostWrapper = styled.section`
     line-height: 20px;
     color: #b7b7b7;
     word-break: break-all;
+
     min-height: 54px;
-    margin-left: 10px;
     word-break: break-word;
     word-wrap: normal;
     margin-bottom: 5px;
+
+    margin-left: 18px;
+    @media (max-width: 500px) {
+    font-size: 15px;
+    margin-left: 14px;
+    height: auto;
+    margin-bottom: 13px;
+  }
+
   }
 
   .content {
@@ -109,6 +139,13 @@ const MainLink = styled.div`
   border: 1px solid #4d4d4d;
   border-radius: 11px;
 
+  @media (max-width: 500px) {
+    width: 278px;
+    height: 115px;
+    padding: 1px 1px 1px 13px;
+  }
+  
+
   p {
     font-family: 'Lato', Arial;
     font-size: 16px;
@@ -117,6 +154,10 @@ const MainLink = styled.div`
     font-weight: bold;
     word-break: break-word;
     word-wrap: normal;
+
+    @media (max-width: 500px) {
+    font-size: 11px;
+  }
   }
 
   span {
@@ -127,9 +168,26 @@ const MainLink = styled.div`
     line-height: 13px;
     color: #9b9595;
     margin-left: 0px;
-    margin-top: 5px;
-    word-break: break-word;
-    word-wrap: normal;
+    word-break: break-all;
+    width: 70%;
+
+    @media (max-width: 500px) {
+    font-size: 9px;
+    width: 150px;
+    margin-top: 3px;
+  }
+  }
+  
+  .url {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    color: #CECECE;
+
+    @media (max-width: 500px) {
+    font-size: 9px;
+  }
   }
 
   .texts {
@@ -145,6 +203,11 @@ const MainLink = styled.div`
     width: 153px;
     height: 152px;
     border-radius: 0px 12px 13px 0px;
+
+    @media (max-width: 500px) {
+    width: 95px;
+    height: 114px;
+  }
   }
 
   a {

@@ -37,6 +37,7 @@ export default function Posts({ url = '/timeline' }) {
         'An error occured while trying to fetch the posts, please refresh the page',
       );
     });
+
   }, []);
 
   if (!posts.length) {
@@ -56,23 +57,23 @@ export default function Posts({ url = '/timeline' }) {
   }
   return (
     <Article>
-  {
-    posts.map(
-      (
-        {
-          post_id,
-          user_name,
-          icon,
-          description,
-          title_url,
-          description_url,
-          url,
-          image_url,
-          tooltipText,
-          liked,
-          like_count
-        },
-        index,
+      {posts.map(
+        (
+          {
+            id,
+            user_name,
+            icon,
+            description,
+            title_url,
+            description_url,
+            url,
+            image_url,
+            tooltipText,
+            liked,
+            like_count
+
+          },
+          index,
       ) => {
         return (
           <Post
@@ -86,7 +87,7 @@ export default function Posts({ url = '/timeline' }) {
               description_url,
               url,
               image_url,
-              tooltipText,
+              tooltipText,s
               liked,
               like_count
             }}
