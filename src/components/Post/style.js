@@ -115,13 +115,13 @@ const PostWrapper = styled.section`
     cursor: pointer;
   }
 
-  .likeIcon{
+  .likeIcon {
     position: absolute;
     left: 32px;
     top: 86px;
   }
 
-  .likeCount{
+  .likeCount {
     font-family: Lato;
     font-size: 11px;
     font-weight: 400;
@@ -129,6 +129,34 @@ const PostWrapper = styled.section`
     color: white;
     margin-top: 4px;
   }
+
+  /* .modal-container {
+    .modal-content {
+      background-color: #333333;
+      border-radius: 50px;
+      width: 597px;
+      height: 262px;
+      display: flex;
+      flex-direction: 'column';
+      justify-content: 'center';
+      align-items: 'center';
+      gap: '40px';
+      position: 'relative';
+    }
+
+    .modal-overlay {
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: 'center';
+      align-items: 'center';
+      position: 'fixed';
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+    }
+  } */
 `;
 
 const MainLink = styled.div`
@@ -216,4 +244,70 @@ const MainLink = styled.div`
   }
 `;
 
-export { Article, PostWrapper, MainLink };
+const ModalStyle = styled.div`
+  background-color: #333333;
+  border-radius: 50px;
+  width: 597px;
+  height: 262px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+
+  h1 {
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    text-align: center;
+    width: 340px;
+
+    color: #ffffff;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 27px;
+
+    button {
+      width: 134px;
+      height: 37px;
+      border-radius: 5px;
+      border: none;
+      font-family: 'Lato';
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+
+      &.white {
+        background-color: #ffffff;
+        color: #1877f2;
+      }
+
+      &.blue {
+        background-color: #1877f2;
+        color: #ffffff;
+      }
+    }
+  }
+`;
+
+const OverlayStyle = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3500;
+  background-color: rgba(255, 255, 255, 0.9);
+`;
+
+export { Article, PostWrapper, MainLink, ModalStyle, OverlayStyle };
