@@ -275,6 +275,9 @@ const ModalStyle = styled.div`
     gap: 27px;
 
     button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 134px;
       height: 37px;
       border-radius: 5px;
