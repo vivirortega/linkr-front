@@ -41,6 +41,11 @@ const Post = styled.section`
     font-weight: 700;
   }
 
+  .hashtag a {
+    text-decoration: none;
+    color: #b7b7b7;
+  }
+
   .row {
     display: flex;
     align-items: flex-start;

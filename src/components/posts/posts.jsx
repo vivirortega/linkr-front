@@ -4,13 +4,16 @@ import { Article, MainLink, Post } from './style';
 import axios from 'axios';
 import ReactHashtag from 'react-hashtag';
 import dotenv from 'dotenv';
+import { useNavigate, Link } from 'react-router-dom';
 
-dotenv.config()
+dotenv.config();
+
 
 export default function Posts(props) {
   let { url } = props;
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -71,9 +74,16 @@ export default function Posts(props) {
                   <div className="content">
                     <span className="user">{user_name}</span>
                     <div className='descriptionContainer'>
-                      <ReactHashtag renderHashtag={(hashtagValue) => (
-                        <div className="hashtag">{hashtagValue}</div>
-                      )}>
+                      <ReactHashtag 
+                        renderHashtag={(hashtagValue) => (
+                          <div className="hashtag" onClick = {()=>{
+                            const hashtagArr = hashtagValue.split('#');
+                            const hashtagText = hashtagArr[hashtagArr.length-1];
+                            navigate(`/hashtag/${hashtagText}`);
+                          }}>
+                            {hashtagValue}
+                          </div>
+                        )}>
                         {description}
                       </ReactHashtag>
                     </div>
