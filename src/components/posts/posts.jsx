@@ -16,7 +16,7 @@ export default function Posts(props) {
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
     
-  if (url !== '/timeline') url = `/hashtag${url}`;
+  if (url !== '/timeline'&&url[1] !=='u') url = `/hashtag${url}`;
 
   useEffect(() => { }, [reload])
   
@@ -31,8 +31,7 @@ export default function Posts(props) {
     };
     
     try {
-      const response = await axios.get(URL, config);
-      console.log(response.data);     
+      const response = await axios.get(URL, config);    
       setPosts(response.data);
       setReload(!reload);
     } catch (error) {
@@ -42,9 +41,6 @@ export default function Posts(props) {
       );
     }
   };
-
-  useEffect(() => {}, [reload]);
-
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
