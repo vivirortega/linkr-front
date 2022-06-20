@@ -23,23 +23,38 @@ export const Main = styled.main`
   .loading {
     display: flex;
     justify-content: center;
+   }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 33px;
+    }
   }
 `;
 
 export const MainWrapper = styled.div`
-  width: 95%;
+  width: 100%;
   max-width: 940px;
   margin: auto;
-`
+
+  @media (max-width: 400px) {
+    overflow-x: hidden;
+    width: 100%;
+  }
+`;
 
 export const TrendingWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 export const ContentWrapper = styled.div`
   width: 66%;
   display: flex;
   flex-direction: column;
-`
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;

@@ -9,6 +9,28 @@ const Form = styled.form`
   margin-bottom: 29px;
   display: ${(props) => props.display};
 
+  @media (max-width: 500px) {
+    /* width: 375px; */
+    width: 100%;
+    height: 164px;
+    border-radius: 0px;
+    margin-bottom: 16px;
+
+    img {
+      display: none;
+    }
+
+    p {
+      margin-top: 10px;
+      margin-left: 0px;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   img {
     width: 50px;
     height: 50px;
@@ -17,7 +39,7 @@ const Form = styled.form`
     margin-left: 18px;
   }
   p {
-    font-family: "Lato", Arial;
+    font-family: 'Lato', Arial;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -36,6 +58,11 @@ const Form = styled.form`
     flex-direction: column;
     margin-left: 60px;
     gap: 5px;
+
+    @media (max-width: 500px) {
+      margin-left: 0px;
+      margin-top: 10px;
+    }
   }
 
   input {
@@ -45,18 +72,28 @@ const Form = styled.form`
     width: 82%;
     height: 30px;
     color: #949494;
-    font-family: "Lato";
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
     line-height: 18px;
     padding: 13px;
+
+    @media (max-width: 500px) {
+      width: 345px;
+      height: 30px;
+    }
   }
   .hashtag {
     width: 82%;
     height: 66px;
     background-color: #efefef;
     border-radius: 5px;
+
+    @media (max-width: 500px) {
+      width: 344px;
+      height: 47px;
+    }
   }
 
   .button {
@@ -76,6 +113,10 @@ const Form = styled.form`
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 16px;
+
+    @media (max-width: 500px) {
+      height: 22px;
+    }
   }
 `;
 
