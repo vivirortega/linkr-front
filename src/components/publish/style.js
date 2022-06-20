@@ -10,11 +10,11 @@ const Form = styled.form`
   display: ${(props) => props.display};
 
   @media (max-width: 500px) {
-    
-      width: 375px;
-      height: 164px;
-      border-radius: 0px;
-      margin-bottom: 16px;
+    /* width: 375px; */
+    width: 100%;
+    height: 164px;
+    border-radius: 0px;
+    margin-bottom: 16px;
 
     img {
       display: none;
@@ -29,7 +29,6 @@ const Form = styled.form`
       display: flex;
       justify-content: center;
     }
-
   }
 
   img {
@@ -40,7 +39,7 @@ const Form = styled.form`
     margin-left: 18px;
   }
   p {
-    font-family: "Lato", Arial;
+    font-family: 'Lato', Arial;
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -73,7 +72,7 @@ const Form = styled.form`
     width: 82%;
     height: 30px;
     color: #949494;
-    font-family: "Lato";
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -119,7 +118,6 @@ const Form = styled.form`
       height: 22px;
     }
   }
-
 `;
 
 export default Form;
