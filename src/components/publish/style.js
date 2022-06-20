@@ -14,6 +14,7 @@ const Form = styled.form`
       width: 375px;
       height: 164px;
       border-radius: 0px;
+      margin-bottom: 16px;
 
     img {
       display: none;
