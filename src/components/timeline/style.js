@@ -20,6 +20,11 @@ export const Main = styled.main`
     width: 611px;
   }
 
+  .loading {
+    display: flex;
+    justify-content: center;
+   }
+
   @media (max-width: 500px) {
     h1 {
       font-size: 33px;

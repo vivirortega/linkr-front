@@ -13,11 +13,10 @@ dotenv.config()
 export default function Publish(props) {
    const {publish: publishVisible, user} = props;
   
-  const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
   
-  const { token } = useContext(UserContext);
+  const { token, setIsLoading, isLoading } = useContext(UserContext);
   
   const config = {
     headers: {
