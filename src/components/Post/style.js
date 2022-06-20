@@ -114,6 +114,21 @@ const PostWrapper = styled.section`
     gap: 15px;
     cursor: pointer;
   }
+
+  .likeIcon{
+    position: absolute;
+    left: 32px;
+    top: 86px;
+  }
+
+  .likeCount{
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    margin-top: 4px;
+  }
 `;
 
 const MainLink = styled.div`
