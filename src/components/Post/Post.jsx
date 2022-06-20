@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { MainLink, PostWrapper } from './style';
 import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
@@ -10,7 +10,7 @@ import UserContext from '../../contexts/usercontext';
 
 const Post = ({ publishing, getPosts }) => {
   const { user, token } = useContext(UserContext);
-  const textAreaRef = useRef(null);
+  const textAreaRef = useRef();
 
   const {
     post_id,
@@ -28,6 +28,7 @@ const Post = ({ publishing, getPosts }) => {
 
   const [editing, setEditing] = useState(false);
   const [descriptionEdit, setDescriptionEdit] = useState(description);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleEdit = async () => {
@@ -44,13 +45,19 @@ const Post = ({ publishing, getPosts }) => {
     };
 
     try {
+      setLoading(true);
       const response = await axios.patch(URL, data, config);
       console.log(response.data);
-      setEditing(false);
+      setLoading(false);
       getPosts();
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
+    setEditing(!editing);
+  };
+
+  const openEditor = () => {
     setEditing(!editing);
   };
 
@@ -59,17 +66,18 @@ const Post = ({ publishing, getPosts }) => {
     element.style.height = `${element.scrollHeight}px`;
   };
 
+  useEffect(() => {
+    if (editing) {
+      growTextArea(textAreaRef.current);
+      textAreaRef.current.focus();
+    }
+  }, [editing]);
+
   return (
     <PostWrapper>
       {user_name === user.name && (
         <div className="icons">
-          <BsFillPencilFill
-            onClick={() => {
-              setEditing(!editing);
-            }}
-            size={15}
-            fill={'#FFFFFF'}
-          />
+          <BsFillPencilFill onClick={openEditor} size={15} fill={'#FFFFFF'} />
           <BsFillTrashFill size={15} fill={'#FFFFFF'} />
         </div>
       )}
@@ -87,7 +95,10 @@ const Post = ({ publishing, getPosts }) => {
                 : { height: '30px' }
             }
             onFocus={(e) => {
-              growTextArea(e.target);
+              e.currentTarget.setSelectionRange(
+                e.currentTarget.value.length,
+                e.currentTarget.value.length,
+              );
             }}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
@@ -102,6 +113,7 @@ const Post = ({ publishing, getPosts }) => {
             }}
             value={descriptionEdit}
             onChange={(e) => setDescriptionEdit(e.target.value)}
+            disabled={loading}
           />
         ) : (
           <div className="descriptionContainer">
@@ -110,9 +122,9 @@ const Post = ({ publishing, getPosts }) => {
                 <div
                   key={hashtagValue + (Math.random() * 100).toString()}
                   className="hashtag"
-                  onClick = {()=>{
+                  onClick={() => {
                     const hashtagArr = hashtagValue.split('#');
-                    const hashtagText = hashtagArr[hashtagArr.length-1];
+                    const hashtagText = hashtagArr[hashtagArr.length - 1];
                     navigate(`/hashtag/${hashtagText}`);
                   }}
                 >
