@@ -64,6 +64,7 @@ export default function Posts(props) {
             description_url,
             url,
             image_url,
+
           },
           index,
         ) => {
