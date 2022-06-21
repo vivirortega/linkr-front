@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { MainLink, PostWrapper, ModalStyle, OverlayStyle } from './style';
+import { MainLink, PostWrapper, MainLinkIconsWrapper, IconsContainer, ModalStyle, OverlayStyle } from './style';
 import ReactHashtag from 'react-hashtag';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
 import axios from 'axios';
@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 
 import Likes from '../posts/likes.jsx';
+import CommentIcon from '../posts/CommentIcon';
+import ShareIcon from '../posts/ShareIcon';
 import UserContext from '../../contexts/usercontext';
 
 import Modal from 'react-modal';
@@ -152,80 +154,89 @@ const Post = ({ publishing, getPosts }) => {
           />
         </div>
       )}
-      <img src={icon} alt="icon" />
-      <div className="col">
-        <div className="content">
-          <span className="user">{user_name}</span>
-        </div>
-        {editing ? (
-          <textarea
-            ref={textAreaRef}
-            style={
-              textAreaRef.current
-                ? { height: textAreaRef.current.scrollHeight }
-                : { height: '30px' }
-            }
-            onFocus={(e) => {
-              e.currentTarget.setSelectionRange(
-                e.currentTarget.value.length,
-                e.currentTarget.value.length,
-              );
-            }}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-                handleEdit();
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape') {
-                setEditing(false);
-              }
-            }}
-            value={descriptionEdit}
-            onChange={(e) => setDescriptionEdit(e.target.value)}
-            disabled={loading}
-          />
-        ) : (
-          <div className="descriptionContainer">
-            <ReactHashtag
-              renderHashtag={(hashtagValue) => (
-                <div
-                  key={hashtagValue + (Math.random() * 100).toString()}
-                  className="hashtag"
-                  onClick={() => {
-                    const hashtagArr = hashtagValue.split('#');
-                    const hashtagText = hashtagArr[hashtagArr.length - 1];
-                    navigate(`/hashtag/${hashtagText}`);
-                  }}
-                >
-                  {hashtagValue}
-                </div>
-              )}
-            >
-              {description}
-            </ReactHashtag>
+      <div className="imgInfoWrapper">
+        <img src={icon} alt="icon" />
+        <div className="col">
+          <div className="content">
+            <span className="user">{user_name}</span>
           </div>
-        )}
-        <div className="likeIcon">
-          <Likes
-            tooltipText={tooltipText}
-            liked={liked}
-            like_count={like_count}
-            post_id={post_id}
-          />
-        </div>
-        <MainLink>
-          <a href={url} target="_blank" rel="noreferrer">
-            <div className="texts">
-              <p>{title_url}</p>
-              <span>{description_url}</span>
-              <span className="url">{url}</span>
+          {editing ? (
+            <textarea
+              ref={textAreaRef}
+              style={
+                textAreaRef.current
+                  ? { height: textAreaRef.current.scrollHeight }
+                  : { height: '30px' }
+              }
+              onFocus={(e) => {
+                e.currentTarget.setSelectionRange(
+                  e.currentTarget.value.length,
+                  e.currentTarget.value.length,
+                );
+              }}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleEdit();
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  setEditing(false);
+                }
+              }}
+              value={descriptionEdit}
+              onChange={(e) => setDescriptionEdit(e.target.value)}
+              disabled={loading}
+            />
+          ) : (
+            <div className="descriptionContainer">
+              <ReactHashtag
+                renderHashtag={(hashtagValue) => (
+                  <div
+                    key={hashtagValue + (Math.random() * 100).toString()}
+                    className="hashtag"
+                    onClick={() => {
+                      const hashtagArr = hashtagValue.split('#');
+                      const hashtagText = hashtagArr[hashtagArr.length - 1];
+                      navigate(`/hashtag/${hashtagText}`);
+                    }}
+                  >
+                    {hashtagValue}
+                  </div>
+                )}
+              >
+                {description}
+              </ReactHashtag>
             </div>
-            <img src={image_url} className="image-url" alt="icon" />
-          </a>
-        </MainLink>
+          )}
+        </div>
       </div>
+      <MainLinkIconsWrapper>
+          <IconsContainer>
+            <div className="likeIcon">
+              <Likes
+                tooltipText={tooltipText}
+                liked={liked}
+                like_count={like_count}
+                post_id={post_id}
+              />
+            </div>
+            <CommentIcon />
+            <ShareIcon />
+
+          </IconsContainer>
+          <MainLink>
+            <a href={url} target="_blank" rel="noreferrer">
+              <div className="texts">
+                <p>{title_url}</p>
+                <span>{description_url}</span>
+                <span className="url">{url}</span>
+              </div>
+              <img src={image_url} className="image-url" alt="icon" />
+            </a>
+          </MainLink>
+        </MainLinkIconsWrapper>
     </PostWrapper>
   );
 };

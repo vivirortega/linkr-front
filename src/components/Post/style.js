@@ -12,12 +12,21 @@ const PostWrapper = styled.section`
   background-color: #171717;
   border-radius: 16px;
   display: flex;
+  flex-direction: column;
   padding: 20px;
+  padding-left: 0px;
   align-items: flex-start;
   gap: 18px;
 
   @media (max-width: 500px) {
     border-radius: 0px;
+  }
+
+  .imgInfoWrapper {
+    display: flex;
+    gap: 18px;
+
+    padding-left: 20px;
   }
 
   img {
@@ -74,7 +83,6 @@ const PostWrapper = styled.section`
   .col {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 7px;
     width: 100%;
     height: 100%;
@@ -115,20 +123,9 @@ const PostWrapper = styled.section`
     cursor: pointer;
   }
 
-  .likeIcon {
-    position: absolute;
-    left: 32px;
-    top: 86px;
-  }
 
-  .likeCount {
-    font-family: Lato;
-    font-size: 11px;
-    font-weight: 400;
-    text-align: center;
-    color: white;
-    margin-top: 4px;
-  }
+
+
 
   /* .modal-container {
     .modal-content {
@@ -159,7 +156,55 @@ const PostWrapper = styled.section`
   } */
 `;
 
+const MainLinkIconsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`
+
+const IconsContainer = styled.div`
+  width: 70px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .iconWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    color: #fff
+  }
+
+
+  .likeIcon {
+    margin-left: 3.3px;
+  }
+
+  .likeIcon p {
+    margin-left: -3.3px;
+  }
+
+  .likeCount, 
+  .iconWrapper p {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    margin-top: 4px;
+  }
+
+
+`
+
+
 const MainLink = styled.div`
+  flex: 1;
   padding: 24px 19.31px 23px 19.31px;
   position: relative;
   gap: 5px;
@@ -313,4 +358,4 @@ const OverlayStyle = styled.div`
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
-export { Article, PostWrapper, MainLink, ModalStyle, OverlayStyle };
+export { Article, PostWrapper, MainLinkIconsWrapper, IconsContainer, MainLink, ModalStyle, OverlayStyle };

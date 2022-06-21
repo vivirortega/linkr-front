@@ -22,6 +22,7 @@ export default function Posts(props) {
   
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
+    console.log(URL);
 
 
     const config = {
