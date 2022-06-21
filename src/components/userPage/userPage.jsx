@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Header from "../header/header";
 import Posts from "../posts/posts";
 import { ContentWrapper, Main, MainWrapper, TrendingWrapper } from "../timeline/style";
+import { Follow, Unfollow } from "./style";
 import Trending from "../Trending/Trending";
 import 'dotenv/config';
 
@@ -25,7 +26,10 @@ export default function UserPage() {
       <Header />
       <Main>
         <MainWrapper>
+          <div className="user-timeline">
           <h1> <img src={image} alt={`${name} profile.`}/> {`${name}'s timeline`}</h1>
+          <Follow>Follow</Follow>
+          </div>
           <TrendingWrapper>
             <ContentWrapper>
               <Posts url={`/users/${id}`} />
