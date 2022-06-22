@@ -37,7 +37,7 @@ export default function UserPage() {
         following: id
       }
 
-      const promise = axios.post("http://localhost:5000/follows", data, config);
+      const promise = axios.post(process.env.REACT_APP_API_URL + '/follows/', data, config);
         promise.then((response) => {
         setFollowing(!following); //true
         console.log("sucesso ao seguir", !following);
@@ -56,7 +56,7 @@ export default function UserPage() {
         following: id
       }
       
-      const promise = axios.patch("http://localhost:5000/follows", data, config);
+      const promise = axios.patch(process.env.REACT_APP_API_URL + '/follows/', data, config);
       promise.then((response) => {
         setFollowing(!following); //false
         console.log("sucesso ao parar de seguir", !following);
