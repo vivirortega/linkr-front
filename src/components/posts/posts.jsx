@@ -88,6 +88,7 @@ export default function Posts(props) {
 
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
+    console.log(URL);
 
     const config = {
       headers: {
@@ -97,6 +98,7 @@ export default function Posts(props) {
     try {
       const response = await axios.get(URL, config);
       setPosts(response.data);
+      console.log(response.data)
       setReload(!reload);
     } catch (error) {
       console.log('erro ao pegar os posts', error);
@@ -152,6 +154,7 @@ export default function Posts(props) {
               tooltipText,
               liked,
               like_count,
+              user_name_repost
             },
             index,
           ) => {
@@ -170,6 +173,7 @@ export default function Posts(props) {
                   tooltipText,
                   liked,
                   like_count,
+                  user_name_repost
                 }}
                 getPosts={getPosts}
               />
