@@ -13,10 +13,10 @@ export default function UserPage() {
     const {id} = useParams();
     const [name,setName] = useState('');
     const [image,setImg] = useState('');
-    const [following, setFollowing] = useState(null);
+    const [following, setFollowing] = useState(true);
     const [isLoadingFollow, setIsLoadingFollow] = useState(false);
     const { token, user } = useContext(UserContext);
-    const config = {
+     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -38,15 +38,34 @@ export default function UserPage() {
       }
 
       const promise = axios.post("http://localhost:5000/follows", data, config);
-
-      promise.then((response) => {
-        setFollowing(response);
-        console.log(response);
+        promise.then((response) => {
+        setFollowing(!following); //true
+        console.log("sucesso ao seguir", !following);
       })
 
       promise.catch((error) => {
         setIsLoadingFollow(false);
-        console.log('erro ao seguir', user);
+        console.log('erro ao seguir', error);
+        alert("Não foi possível executar a operação");
+      })
+    }
+
+    function removeFollow(){
+      const data = {
+        follower: user.id,
+        following: id
+      }
+      
+      const promise = axios.patch("http://localhost:5000/follows", data, config);
+      promise.then((response) => {
+        setFollowing(!following); //false
+        console.log("sucesso ao parar de seguir", !following);
+      })
+
+      promise.catch((error) => {
+        setIsLoadingFollow(false);
+        console.log('erro ao deixar de seguir', config);
+        alert("Não foi possível executar a operação");
       })
     }
 
@@ -57,7 +76,8 @@ export default function UserPage() {
         <MainWrapper>
           <div className="user-timeline">
           <h1> <img src={image} alt={`${name} profile.`}/> {`${name}'s timeline`}</h1>
-          <Follow disabled={isLoadingFollow} onClick={insertFollow}>Follow</Follow>
+          {following ? <Unfollow disabled={isLoadingFollow} onClick={removeFollow}>Unfollow</Unfollow> :
+          <Follow disabled={isLoadingFollow} onClick={insertFollow}>Follow</Follow> }
           </div>
           <TrendingWrapper>
             <ContentWrapper>
