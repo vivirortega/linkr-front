@@ -1,8 +1,12 @@
 const isObject = (obj) => {
-  return obj && typeof obj === 'object';
+  return obj != null && typeof obj === 'object';
 };
 
 const isEqual = (obj1, obj2) => {
+  if (!isObject(obj1) || !isObject(obj2)) {
+    return obj1 === obj2;
+  }
+
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
   }
@@ -22,4 +26,8 @@ const isEqual = (obj1, obj2) => {
   return true;
 };
 
-export default isEqual;
+const includesObject = (arr, objToFind) => {
+  return arr.some((obj) => isEqual(obj, objToFind));
+};
+
+export { isEqual, includesObject };
