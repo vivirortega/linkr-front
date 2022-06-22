@@ -6,6 +6,43 @@ const Article = styled.article`
   gap: 20px;
 `;
 
+const RepostLabel = styled.div`
+  width: 100%;
+  height: 46px;
+  background-color: #202020;
+  position:relative;
+  top: 34px;
+  z-index: 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  color: #fff;
+  display: ${props => props.display};
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  .reposterInfo {
+    width: 95%;
+
+    margin-top: 5px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    font-family: 'lato';
+
+  }
+
+  .reposterInfo p {
+    font-size: 12px;
+  }
+
+  .reposterInfo p span {
+    font-weight: 700;
+  }
+
+`
+
 const PostWrapper = styled.section`
   position: relative;
   width: 100%;
@@ -155,6 +192,7 @@ const PostWrapper = styled.section`
     }
   } */
 `;
+
 
 const MainLinkIconsWrapper = styled.div`
   width: 100%;
@@ -358,4 +396,4 @@ const OverlayStyle = styled.div`
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
-export { Article, PostWrapper, MainLinkIconsWrapper, IconsContainer, MainLink, ModalStyle, OverlayStyle };
+export { Article, PostWrapper, RepostLabel, MainLinkIconsWrapper, IconsContainer, MainLink, ModalStyle, OverlayStyle };
