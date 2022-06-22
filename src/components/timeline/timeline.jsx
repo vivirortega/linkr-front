@@ -20,10 +20,15 @@ export default function Timeline(props) {
           <h1>{text}</h1>
           <TrendingWrapper>
             <ContentWrapper>
-              <Publish user={user} publish = {publish} />
-    
-              {isLoading ? <div className="loading"><ThreeDots color="#fff" /> </div> : <Posts url = {`/${text}`}/> }
+              <Publish user={user} publish={publish} />
 
+              {isLoading ? (
+                <div className="loading">
+                  <ThreeDots color="#fff" />{' '}
+                </div>
+              ) : (
+                <Posts url={`/${text}`} />
+              )}
             </ContentWrapper>
             <Trending />
           </TrendingWrapper>
