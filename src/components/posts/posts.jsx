@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
+import useInterval from 'use-interval';
 import UserContext from '../../contexts/usercontext';
 
+import NewPostButton from '../NewPostButton/NewPostButton';
 import Post from '../Post/Post';
 import { Article } from './style';
 
@@ -9,20 +11,25 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 export default function Posts(props) {
   let { url } = props;
   const { token } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
-    
-  if (url !== '/timeline'&&url[0]+url[1] !=='/u') url = `/hashtag${url}`;
 
-  useEffect(() => { }, [reload])
-  
+  let [newPosts, setNewPosts] = useState(0);
+
+  useInterval(() => {
+    // Your custom logic here
+    setNewPosts(newPosts + 1);
+  }, 5000);
+
+  if (url !== '/timeline' && url[0] + url[1] !== '/u') url = `/hashtag${url}`;
+
+  useEffect(() => {}, [reload]);
+
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
-
 
     const config = {
       headers: {
@@ -30,7 +37,7 @@ export default function Posts(props) {
       },
     };
     try {
-      const response = await axios.get(URL, config);    
+      const response = await axios.get(URL, config);
       setPosts(response.data);
       setReload(!reload);
     } catch (error) {
@@ -44,9 +51,8 @@ export default function Posts(props) {
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
-  
-   if (!posts.length) {
 
+  if (!posts.length) {
     return (
       <div align="center">
         <span
@@ -61,47 +67,50 @@ export default function Posts(props) {
       </div>
     );
   }
-  
+
   return (
-    <Article>
-      {posts.map(
-        (
-          {
-            post_id,
-            user_name,
-            icon,
-            description,
-            title_url,
-            description_url,
-            url,
-            image_url,
-            tooltipText,
-            liked,
-            like_count,
+    <>
+      {newPosts > 0 && <NewPostButton newPosts={newPosts} />}
+      <Article>
+        {posts.map(
+          (
+            {
+              post_id,
+              user_name,
+              icon,
+              description,
+              title_url,
+              description_url,
+              url,
+              image_url,
+              tooltipText,
+              liked,
+              like_count,
+            },
+            index,
+          ) => {
+            return (
+              <Post
+                key={index}
+                publishing={{
+                  post_id,
+                  user_name,
+                  icon,
+                  description,
+                  title_url,
+                  description_url,
+                  url,
+                  image_url,
+                  tooltipText,
+                  liked,
+                  like_count,
+                }}
+                getPosts={getPosts}
+              />
+            );
           },
-          index,
-        ) => {
-          return (
-            <Post
-              key={index}
-              publishing={{
-                post_id,
-                user_name,
-                icon,
-                description,
-                title_url,
-                description_url,
-                url,
-                image_url,
-                tooltipText,
-                liked,
-                like_count,
-              }}
-              getPosts={getPosts}
-            />
-          );
-        },
-      )}
-    </Article>
+        )}
+      </Article>
+    </>
   );
 }

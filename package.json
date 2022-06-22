@@ -17,7 +17,8 @@
     "react-scripts": "^4.0.3",
     "react-tooltip": "^4.2.21",
     "socket.io-client": "^4.5.1",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "use-interval": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

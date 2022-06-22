@@ -1,8 +1,9 @@
 import { useContext } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 import Header from '../header/header';
 import Publish from '../publish/topublish';
+import NewPostButton from '../NewPostButton/NewPostButton';
 import Posts from '../posts/posts';
-import { ThreeDots } from 'react-loader-spinner';
 import { Main, MainWrapper, TrendingWrapper, ContentWrapper } from './style';
 import Trending from '../Trending/Trending';
 
@@ -20,10 +21,14 @@ export default function Timeline(props) {
           <h1>{text}</h1>
           <TrendingWrapper>
             <ContentWrapper>
-              <Publish user={user} publish = {publish} />
-    
-              {isLoading ? <div className="loading"><ThreeDots color="#fff" /> </div> : <Posts url = {`/${text}`}/> }
-
+              <Publish user={user} publish={publish} />
+              {isLoading ? (
+                <div className="loading">
+                  <ThreeDots color="#fff" />{' '}
+                </div>
+              ) : (
+                <Posts url={`/${text}`} />
+              )}
             </ContentWrapper>
             <Trending />
           </TrendingWrapper>
