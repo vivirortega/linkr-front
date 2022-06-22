@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import useInterval from 'use-interval';
 import UserContext from '../../contexts/usercontext';
+import { isEqual, includesObject } from '../../utils/isEqual.js';
 
 import NewPostButton from '../NewPostButton/NewPostButton';
 import Post from '../Post/Post';
@@ -20,30 +21,6 @@ export default function Posts(props) {
   const [newPosts, setNewPosts] = useState(0);
   const [lastPost, setLastPost] = useState({});
 
-  const isObject = (obj) => {
-    return obj && typeof obj === 'object';
-  };
-
-  const isEqual = (obj1, obj2) => {
-    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
-      return false;
-    }
-    for (let key in obj1) {
-      const value1 = obj1[key];
-      const value2 = obj2[key];
-      const areObjects = isObject(value1) && isObject(value2);
-
-      if (
-        (areObjects && !isEqual(value1, value2)) ||
-        (!areObjects && value1 !== value2)
-      ) {
-        return false;
-      }
-    }
-
-    return true;
-  };
-
   useInterval(() => {
     const getNewPosts = async () => {
       let newPosts = 0;
@@ -57,16 +34,25 @@ export default function Posts(props) {
 
       try {
         const response = await axios.get(URL, config);
-        const updatedPosts = response.data;
-        if (isEqual(updatedPosts[0], lastPost)) {
-          return newPosts;
-        }
-        setLastPost(updatedPosts[0]);
+        let updatedPosts = response.data;
+
+        updatedPosts = updatedPosts.map((post) => {
+          return {
+            post_id: post.post_id,
+            user_id_repost: post.user_id_repost,
+          };
+        });
+
+        const postsToCompare = posts.map((post) => {
+          return {
+            post_id: post.post_id,
+            user_id_repost: post.user_id_repost,
+          };
+        });
+
         for (const post of updatedPosts) {
-          if (!isEqual(post, posts[0])) {
+          if (!includesObject(postsToCompare, post)) {
             newPosts++;
-          } else {
-            return newPosts;
           }
         }
         return newPosts;
@@ -76,9 +62,7 @@ export default function Posts(props) {
     };
 
     getNewPosts().then((newPosts) => {
-      if (newPosts > 0) {
-        setNewPosts(newPosts);
-      }
+      setNewPosts(newPosts);
     });
   }, 15000);
 
@@ -98,7 +82,7 @@ export default function Posts(props) {
     try {
       const response = await axios.get(URL, config);
       setPosts(response.data);
-      console.log(response.data)
+      console.log(response.data);
       setReload(!reload);
     } catch (error) {
       console.log('erro ao pegar os posts', error);
@@ -154,7 +138,7 @@ export default function Posts(props) {
               tooltipText,
               liked_by_me,
               like_count,
-              user_name_repost
+              user_name_repost,
             },
             index,
           ) => {
@@ -173,7 +157,7 @@ export default function Posts(props) {
                   tooltipText,
                   liked_by_me,
                   like_count,
-                  user_name_repost
+                  user_name_repost,
                 }}
                 getPosts={getPosts}
               />
