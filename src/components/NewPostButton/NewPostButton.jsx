@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
 import { FiRefreshCw } from 'react-icons/fi';
 
 import { Button } from './style.js';
 
-const NewPostButton = ({ newPosts }) => {
+const NewPostButton = ({ newPosts, handleClick }) => {
   return (
-    <Button>
-      <span>{`${newPosts} new posts, load more!`}</span>
+    <Button onClick={handleClick}>
+      <span>{`${
+        newPosts >= 20 ? '20+' : newPosts
+      } new posts, load more!`}</span>
       <FiRefreshCw fill="#FFF" size="20" />
     </Button>
   );

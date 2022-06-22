@@ -17,12 +17,70 @@ export default function Posts(props) {
   const [posts, setPosts] = useState([]);
   const [reload, setReload] = useState(true);
 
-  let [newPosts, setNewPosts] = useState(0);
+  const [newPosts, setNewPosts] = useState(0);
+  const [lastPost, setLastPost] = useState({});
+
+  const isObject = (obj) => {
+    return obj && typeof obj === 'object';
+  };
+
+  const isEqual = (obj1, obj2) => {
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+      return false;
+    }
+    for (let key in obj1) {
+      const value1 = obj1[key];
+      const value2 = obj2[key];
+      const areObjects = isObject(value1) && isObject(value2);
+
+      if (
+        (areObjects && !isEqual(value1, value2)) ||
+        (!areObjects && value1 !== value2)
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   useInterval(() => {
-    // Your custom logic here
-    setNewPosts(newPosts + 1);
-  }, 5000);
+    const getNewPosts = async () => {
+      let newPosts = 0;
+      const URL = `${process.env.REACT_APP_API_URL}${url}`;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        const response = await axios.get(URL, config);
+        const updatedPosts = response.data;
+        if (isEqual(updatedPosts[0], lastPost)) {
+          return newPosts;
+        }
+        setLastPost(updatedPosts[0]);
+        for (const post of updatedPosts) {
+          if (!isEqual(post, posts[0])) {
+            newPosts++;
+          } else {
+            return newPosts;
+          }
+        }
+        return newPosts;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getNewPosts().then((newPosts) => {
+      if (newPosts > 0) {
+        setNewPosts(newPosts);
+      }
+    });
+  }, 15000);
 
   if (url !== '/timeline' && url[0] + url[1] !== '/u') url = `/hashtag${url}`;
 
@@ -72,7 +130,15 @@ export default function Posts(props) {
 
   return (
     <>
-      {newPosts > 0 && <NewPostButton newPosts={newPosts} />}
+      {newPosts > 0 && (
+        <NewPostButton
+          handleClick={() => {
+            setNewPosts(0);
+            getPosts();
+          }}
+          newPosts={newPosts}
+        />
+      )}
       <Article>
         {posts.map(
           (
