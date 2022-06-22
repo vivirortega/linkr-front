@@ -86,7 +86,7 @@ export default function Posts(props) {
               url,
               image_url,
               tooltipText,
-              liked,
+              liked_by_me,
               like_count,
               user_name_repost
             },
@@ -105,7 +105,7 @@ export default function Posts(props) {
                   url,
                   image_url,
                   tooltipText,
-                  liked,
+                  liked_by_me,
                   like_count,
                   user_name_repost
                 }}

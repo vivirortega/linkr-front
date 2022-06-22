@@ -30,7 +30,7 @@ const Post = ({ publishing, getPosts }) => {
     url,
     image_url,
     tooltipText,
-    liked,
+    liked_by_me,
     like_count,
     user_name_repost
   } = publishing;
@@ -231,7 +231,7 @@ const Post = ({ publishing, getPosts }) => {
               <div className="likeIcon">
                 <Likes
                   tooltipText={tooltipText}
-                  liked={liked}
+                  liked={liked_by_me}
                   like_count={like_count}
                   post_id={post_id}
                 />
