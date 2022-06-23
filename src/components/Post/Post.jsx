@@ -41,8 +41,21 @@ const Post = ({ publishing, getPosts }) => {
   const navigate = useNavigate();
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalText, setModalText] = useState('');
+  const [confirmModalText, setConfirmModalText] = useState('')
 
-  function openModal() {
+  function openDeleteModal() {
+    setModalText('Are you sure you want to delete this post?');
+    setConfirmModalText('Yes, delete')
+    setConfirmModalFunction(() => () => handleDelete())
+    setIsOpen(true);
+  }
+
+  function openRepostModal() {
+    console.log("Open")
+    setModalText(`Do you want to re-post this link?`)
+    setConfirmModalText('Yes, share!')
+    setConfirmModalFunction(() => () => handleRepost())
     setIsOpen(true);
   }
 
@@ -52,6 +65,33 @@ const Post = ({ publishing, getPosts }) => {
 
   function closeModal() {
     setIsOpen(false);
+
+  }
+
+  async function handleRepost() {
+    const URL = `${process.env.REACT_APP_API_URL}/repost`
+
+    const headers = {
+      authorization: `Bearer ${token}`,
+    }
+    const data = {
+      postId: post_id
+    }
+    try {
+      setLoading(true);
+      const response = await axios.post(URL, data, {headers});
+      console.log(response.data);
+      setLoading(false);
+      setIsOpen(false);
+      getPosts();
+    } catch (error) {
+      setLoading(false);
+      setIsOpen(false);
+      alert(error.message);
+    }
+    
+
+
   }
 
   const handleEdit = async () => {
@@ -80,6 +120,8 @@ const Post = ({ publishing, getPosts }) => {
     setEditing(!editing);
   };
 
+
+
   const handleDelete = async () => {
     const URL = `${process.env.REACT_APP_API_URL}/timeline/${post_id}`;
 
@@ -102,7 +144,7 @@ const Post = ({ publishing, getPosts }) => {
       alert(error.message);
     }
   };
-
+  const [confirmModalFunction, setConfirmModalFunction] = useState()
   const openEditor = () => {
     setEditing(!editing);
   };
@@ -120,17 +162,17 @@ const Post = ({ publishing, getPosts }) => {
   }, [editing]);
 
 
-  const display = user_name_repost? 'flex' : 'none';
+  const display = user_name_repost ? 'flex' : 'none';
   return (
     <>
-      <RepostLabel display = {display} >
+      <RepostLabel display={display} >
         <div className="reposterInfo">
           <FaRetweet />
           <p>Re-posted by <span>{user_name_repost}</span></p>
         </div>
       </RepostLabel>
       <PostWrapper>
-        
+
         {console.log(user_name_repost)};
         <Modal
           isOpen={modalIsOpen}
@@ -146,13 +188,13 @@ const Post = ({ publishing, getPosts }) => {
             <OverlayStyle {...props}>{contentElement}</OverlayStyle>
           )}
         >
-          <h1>Are you sure you want to delete this post?</h1>
+          <h1>{modalText}</h1>
           <div className="buttons">
             <button className="white" onClick={closeModal}>
               No, go back
             </button>
-            <button className="blue" onClick={handleDelete}>
-              {loading ? <ThreeDots color="#fff" /> : 'Yes, delete'}
+            <button className="blue" onClick={confirmModalFunction}>
+              {loading ? <ThreeDots color="#fff" /> : confirmModalText}
             </button>
           </div>
         </Modal>
@@ -161,7 +203,7 @@ const Post = ({ publishing, getPosts }) => {
             <BsFillPencilFill onClick={openEditor} size={15} fill={'#FFFFFF'} />
             <BsFillTrashFill
               onClick={() => {
-                openModal();
+                openDeleteModal();
               }}
               size={15}
               fill={'#FFFFFF'}
@@ -227,30 +269,30 @@ const Post = ({ publishing, getPosts }) => {
           </div>
         </div>
         <MainLinkIconsWrapper>
-            <IconsContainer>
-              <div className="likeIcon">
-                <Likes
-                  tooltipText={tooltipText}
-                  liked={liked_by_me}
-                  like_count={like_count}
-                  post_id={post_id}
-                />
-              </div>
-              <CommentIcon />
-              <ShareIcon />
+          <IconsContainer>
+            <div className="likeIcon">
+              <Likes
+                tooltipText={tooltipText}
+                liked={liked_by_me}
+                like_count={like_count}
+                post_id={post_id}
+              />
+            </div>
+            <CommentIcon />
+            <ShareIcon callback={openRepostModal} />
 
-            </IconsContainer>
-            <MainLink>
-              <a href={url} target="_blank" rel="noreferrer">
-                <div className="texts">
-                  <p>{title_url}</p>
-                  <span>{description_url}</span>
-                  <span className="url">{url}</span>
-                </div>
-                <img src={image_url} className="image-url" alt="icon" />
-              </a>
-            </MainLink>
-          </MainLinkIconsWrapper>
+          </IconsContainer>
+          <MainLink>
+            <a href={url} target="_blank" rel="noreferrer">
+              <div className="texts">
+                <p>{title_url}</p>
+                <span>{description_url}</span>
+                <span className="url">{url}</span>
+              </div>
+              <img src={image_url} className="image-url" alt="icon" />
+            </a>
+          </MainLink>
+        </MainLinkIconsWrapper>
       </PostWrapper>
     </>
 
