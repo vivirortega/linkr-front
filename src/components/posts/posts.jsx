@@ -5,10 +5,11 @@ import { isEqual, includesObject } from '../../utils/isEqual.js';
 
 import NewPostButton from '../NewPostButton/NewPostButton';
 import Post from '../Post/Post';
-import { Article } from './style';
+import { Article, LoadDiv, TextFollowDiv } from './style';
 
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { TailSpin } from 'react-loader-spinner';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ export default function Posts(props) {
   const [reload, setReload] = useState(true);
 
   const [newPosts, setNewPosts] = useState(0);
-  const [lastPost, setLastPost] = useState({});
+  const [text, setText] = useState('');
 
   useInterval(() => {
     const getNewPosts = async () => {
@@ -73,7 +74,6 @@ export default function Posts(props) {
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
     console.log(URL);
-
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -81,6 +81,13 @@ export default function Posts(props) {
     };
     try {
       const response = await axios.get(URL, config);
+      if(!response.data.length) {
+        setText('No posts found from your friends.')
+      }
+      if(response.data.message) {
+        const {message} = response.data
+        setText(message)
+      }
       setPosts(response.data);
       console.log(response.data);
       setReload(!reload);
@@ -96,9 +103,9 @@ export default function Posts(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
-  if (!posts.length) {
+  if (text!=='') {
     return (
-      <div align="center">
+      <TextFollowDiv>
         <span
           style={{
             fontFamily: 'Lato',
@@ -106,10 +113,18 @@ export default function Posts(props) {
             color: 'white',
           }}
         >
-          There are no posts yet
+          <h2>{text}</h2>
         </span>
-      </div>
+      </TextFollowDiv>
     );
+  }
+  if (text===''&& !posts.length) {
+   return( 
+      <LoadDiv>
+          <TailSpin color="grey" />
+          <h2>Loading posts...</h2>
+      </LoadDiv>
+   )
   }
 
   return (
