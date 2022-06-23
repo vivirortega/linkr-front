@@ -33,6 +33,7 @@ const Login = () => {
       } = await axios.post(process.env.REACT_APP_API_URL + '/signin', body);
       setToken(token);
       setUser(user);
+
       navigate('/timeline');
     } catch (err) {
       setLoading(false);
