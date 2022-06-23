@@ -20,7 +20,6 @@ const PostWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
   @media (max-width: 500px) {
    border-radius: 0px;
@@ -220,4 +219,26 @@ const MainLink = styled.div`
   }
 `;
 
-export { Article, PostWrapper, MainLink };
+const CommentsContainer = styled.section`
+  width: 100%;
+  background-color: #202020;
+  position:relative;
+  top: -30px;
+  z-index: 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  color: #fff;
+  display: ${props => props.display};
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  .ReactCollapse--collapse {
+  transition: height 700ms;
+}
+`
+const Wrapper = styled.div`
+  margin-top: 32px;
+`
+
+
+export { Article, PostWrapper, MainLink, CommentsContainer, Wrapper};

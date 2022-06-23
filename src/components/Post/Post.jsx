@@ -12,6 +12,7 @@ import Likes from '../posts/likes.jsx';
 import CommentIcon from '../posts/CommentIcon';
 import ShareIcon from '../posts/ShareIcon';
 import UserContext from '../../contexts/usercontext';
+import CommentsArea from '../posts/CommentsArea';
 
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
@@ -39,6 +40,8 @@ const Post = ({ publishing, getPosts }) => {
   const [editing, setEditing] = useState(false);
   const [descriptionEdit, setDescriptionEdit] = useState(description);
   const [loading, setLoading] = useState(false);
+  const [commentsVisible, setCommentsVisible] = useState(false);
+  const [comments, setComments] = useState([])
   const navigate = useNavigate();
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -112,6 +115,23 @@ const Post = ({ publishing, getPosts }) => {
     element.style.height = 'auto';
     element.style.height = `${element.scrollHeight}px`;
   };
+
+  const handleComments = async () => {
+    const URL = `${process.env.REACT_APP_API_URL}/comments/${post_id}`;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = (await axios.get(URL, config)).data;
+      return response;
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   useEffect(() => {
     if (editing) {
@@ -237,7 +257,17 @@ const Post = ({ publishing, getPosts }) => {
                   post_id={post_id}
                 />
               </div>
-              <CommentIcon comment_count = {comment_count}/>
+              <div className="iconWrapper"
+                onClick = {async ()=>{
+                  const response = await handleComments();
+                  setComments(response);
+                  setCommentsVisible(!commentsVisible);
+                }}
+              >
+                <CommentIcon 
+                  comment_count = {comment_count}
+                />
+              </div>
               <ShareIcon />
 
             </IconsContainer>
@@ -253,6 +283,10 @@ const Post = ({ publishing, getPosts }) => {
             </MainLink>
           </MainLinkIconsWrapper>
       </PostWrapper>
+      <CommentsArea 
+        commentsVisible = {commentsVisible} 
+        comments = {comments} 
+      />
     </>
 
 
