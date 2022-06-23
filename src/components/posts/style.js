@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Article = styled.article`
   display: flex;
@@ -7,7 +7,7 @@ const Article = styled.article`
   width: 100%;
 
   @media (max-width: 500px) {
-   gap: 16px;
+    gap: 16px;
   }
 `;
 
@@ -23,9 +23,9 @@ const PostWrapper = styled.section`
   position: relative;
 
   @media (max-width: 500px) {
-   border-radius: 0px;
-   width: 375px;
-   height: 232px;
+    border-radius: 0px;
+    width: 375px;
+    height: 232px;
   }
 
   img {
@@ -35,14 +35,14 @@ const PostWrapper = styled.section`
     margin-left: 18px;
     margin-top: 17px;
 
-  @media (max-width: 500px) {
-    width: 40px;
-    height: 40px;
-  }
+    @media (max-width: 500px) {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   span {
-    font-family: 'Lato';
+    font-family: "Lato";
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
@@ -54,9 +54,9 @@ const PostWrapper = styled.section`
     word-wrap: normal;
 
     @media (max-width: 500px) {
-    font-size: 17px;
-    margin-left: 14px;
-  }
+      font-size: 17px;
+      margin-left: 14px;
+    }
   }
 
   .hashtag {
@@ -77,7 +77,7 @@ const PostWrapper = styled.section`
 
   .descriptionContainer {
     display: inline;
-    font-family: 'Lato';
+    font-family: "Lato";
     font-size: 17px;
     line-height: 20px;
     color: #b7b7b7;
@@ -90,12 +90,11 @@ const PostWrapper = styled.section`
 
     margin-left: 18px;
     @media (max-width: 500px) {
-    font-size: 15px;
-    margin-left: 14px;
-    height: auto;
-    margin-bottom: 13px;
-  }
-
+      font-size: 15px;
+      margin-left: 14px;
+      height: auto;
+      margin-bottom: 13px;
+    }
   }
 
   .content {
@@ -112,16 +111,16 @@ const PostWrapper = styled.section`
     cursor: pointer;
   }
 
-  .icon{
+  .icon {
     position: absolute;
     top: 86px;
     left: 18px;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
   }
 
-  .likeCount{
+  .likeCount {
     font-family: Lato;
     font-size: 11px;
     font-weight: 400;
@@ -149,10 +148,9 @@ const MainLink = styled.div`
     height: 115px;
     padding: 1px 1px 1px 13px;
   }
-  
 
   p {
-    font-family: 'Lato', Arial;
+    font-family: "Lato", Arial;
     font-size: 16px;
     line-height: 19px;
     color: #cecece;
@@ -161,12 +159,12 @@ const MainLink = styled.div`
     word-wrap: normal;
 
     @media (max-width: 500px) {
-    font-size: 11px;
-  }
+      font-size: 11px;
+    }
   }
 
   span {
-    font-family: 'Lato';
+    font-family: "Lato";
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
@@ -177,22 +175,22 @@ const MainLink = styled.div`
     width: 70%;
 
     @media (max-width: 500px) {
-    font-size: 9px;
-    width: 150px;
-    margin-top: 3px;
+      font-size: 9px;
+      width: 150px;
+      margin-top: 3px;
+    }
   }
-  }
-  
+
   .url {
     font-family: "Lato";
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
-    color: #CECECE;
+    color: #cecece;
 
     @media (max-width: 500px) {
-    font-size: 9px;
-  }
+      font-size: 9px;
+    }
   }
 
   .texts {
@@ -210,14 +208,44 @@ const MainLink = styled.div`
     border-radius: 0px 12px 13px 0px;
 
     @media (max-width: 500px) {
-    width: 95px;
-    height: 114px;
-  }
+      width: 95px;
+      height: 114px;
+    }
   }
 
   a {
     text-decoration: none;
   }
 `;
+const LoadDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  h2 {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: #6d6d6d;
+  }
+`;
 
-export { Article, PostWrapper, MainLink };
+const TextFollowDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  h2 {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: #6d6d6d;
+  }
+`;
+export { Article, PostWrapper, MainLink, LoadDiv, TextFollowDiv };
