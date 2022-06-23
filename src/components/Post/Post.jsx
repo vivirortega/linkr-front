@@ -53,7 +53,7 @@ const Post = ({ publishing, getPosts }) => {
 
   function openRepostModal() {
     console.log("Open")
-    setModalText(`Do you want to re-post\nthis link?`)
+    setModalText(`Do you want to re-post this link?`)
     setConfirmModalText('Yes, share!')
     setConfirmModalFunction(() => () => handleRepost())
     setIsOpen(true);
