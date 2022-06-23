@@ -47,6 +47,12 @@ export const MainWrapper = styled.div`
     overflow-x: hidden;
     width: 100%;
   }
+
+  .user-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const TrendingWrapper = styled.div`
