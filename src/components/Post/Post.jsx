@@ -32,7 +32,8 @@ const Post = ({ publishing, getPosts }) => {
     tooltipText,
     liked_by_me,
     like_count,
-    user_name_repost
+    user_name_repost,
+    comment_count
   } = publishing;
 
   const [editing, setEditing] = useState(false);
@@ -131,7 +132,7 @@ const Post = ({ publishing, getPosts }) => {
       </RepostLabel>
       <PostWrapper>
         
-        {console.log(user_name_repost)};
+        
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -236,7 +237,7 @@ const Post = ({ publishing, getPosts }) => {
                   post_id={post_id}
                 />
               </div>
-              <CommentIcon />
+              <CommentIcon comment_count = {comment_count}/>
               <ShareIcon />
 
             </IconsContainer>

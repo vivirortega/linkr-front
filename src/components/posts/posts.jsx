@@ -139,6 +139,7 @@ export default function Posts(props) {
               liked_by_me,
               like_count,
               user_name_repost,
+              comment_count,
             },
             index,
           ) => {
@@ -158,6 +159,7 @@ export default function Posts(props) {
                   liked_by_me,
                   like_count,
                   user_name_repost,
+                  comment_count,
                 }}
                 getPosts={getPosts}
               />
