@@ -5,10 +5,18 @@ import { CommentsContainer, Wrapper } from './style';
 import Comment from './Comment';
 import CommentInput from './CommentInput';
 import CommentContext from '../../contexts/commentContext';
+import UserContext from '../../contexts/usercontext';
 
 const CommentsArea = (props)=>{
   const {commentsVisible, comments} = useContext(CommentContext);
+  const {loggedUserFollows} = useContext(UserContext);
   const {post_id: postId, response: commentsArr} = comments;
+  const followsIds = []
+
+  loggedUserFollows.forEach(item=>{
+    followsIds.push(item.following)
+  })
+
 
   if(commentsArr) {
 
@@ -20,6 +28,7 @@ const CommentsArea = (props)=>{
               {
               commentsArr.map(({
                 user_name,
+                id,
                 profile_picture,
                 comment
               }, index) => {
@@ -27,8 +36,10 @@ const CommentsArea = (props)=>{
                   <Comment
                     key = {index}
                     userName = {user_name}
+                    userId = {id}
                     profilePicture = {profile_picture}
                     comment = {comment}
+                    followsIds = {followsIds}
                   />
                 )
               })}
