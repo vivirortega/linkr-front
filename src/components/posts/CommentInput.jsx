@@ -13,7 +13,7 @@ const CommentInput = (props)=> {
   const { id: userId, image } = user;
   const {postId} = props;
   const [commentValue, setCommentValue] = useState('');
-  const spanRef = useRef(null)
+  const spanRef = useRef(null);
 
   const sendComment = async () => {
     const URL = `${process.env.REACT_APP_API_URL}/comment`;

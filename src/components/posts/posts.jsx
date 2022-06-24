@@ -82,7 +82,6 @@ export default function Posts(props) {
     try {
       const response = await axios.get(URL, config);
       setPosts(response.data);
-      console.log(response.data);
       setReload(!reload);
     } catch (error) {
       console.log('erro ao pegar os posts', error);

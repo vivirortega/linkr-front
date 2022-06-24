@@ -234,11 +234,16 @@ const CommentsContainer = styled.section`
   align-items: flex-start;
 
   .ReactCollapse--collapse {
-  transition: height 700ms;
-}
+    transition: height 700ms;
+  }
 `
 const Wrapper = styled.div`
   margin-top: 32px;
+
+  .commentsWrapper {
+    max-height: 250px;
+    overflow-y: scroll;
+  }
 `
 
 

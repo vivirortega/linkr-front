@@ -34,18 +34,13 @@ export const CommentHeader = styled.div`
   align-items: center;
   gap: 8px;
 
-  .dot {
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background-color: #444
-  }
-
   .complement {
     font-size: 13px;
     color: #444
   }
 `
+
+
 
 export const CommentContent = styled.div`
   margin-top: 4px;

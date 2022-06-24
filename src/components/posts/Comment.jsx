@@ -1,16 +1,33 @@
 import * as Style from './commentStyle.js'
+import { useContext } from 'react';
+
+import UserContext from '../../contexts/usercontext';
+import CommentContext from '../../contexts/commentContext.js';
 
 
 const Comment = (props)=> {
-  const {userName, profilePicture, comment} = props;
+  const {userName: commentUserName, profilePicture, comment} = props;
+  const { user } = useContext(UserContext);
+  const { postAuthor} = useContext(CommentContext)
+  const { name: loggedUserName } = user;
+  let append = '';
+
+  if(commentUserName === loggedUserName) {
+    append = "";
+  }
+  if(commentUserName === postAuthor) {
+    append = "• post's author";
+  } 
+
+
+
   return(
     <Style.CommentContainer>
       <Style.UserImg src = {profilePicture}/>
       <Style.CommentInfo>
         <Style.CommentHeader>
-          <span className="userName">{userName}</span>
-          <div className="dot"></div>
-          <span className="complement">following</span>
+          <span className="userName">{commentUserName}</span>
+          <span className="complement">{append}</span>
         </Style.CommentHeader>
         <Style.CommentContent>
           <span>{comment}</span>

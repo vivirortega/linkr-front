@@ -10,27 +10,29 @@ const CommentsArea = (props)=>{
   const {commentsVisible, comments} = useContext(CommentContext);
   const {post_id: postId, response: commentsArr} = comments;
 
-  if(comments.response) {
+  if(commentsArr) {
 
     return(  
       <CommentsContainer>
         <Collapse isOpened={commentsVisible} >
           <Wrapper>
-            {
-            commentsArr.map(({
-              user_name,
-              profile_picture,
-              comment
-            }, index) => {
-              return(
-                <Comment 
-                  key = {index}
-                  userName = {user_name}
-                  profilePicture = {profile_picture}
-                  comment = {comment}
-                />
-              )
-            })}
+            <div className="commentsWrapper">
+              {
+              commentsArr.map(({
+                user_name,
+                profile_picture,
+                comment
+              }, index) => {
+                return(
+                  <Comment
+                    key = {index}
+                    userName = {user_name}
+                    profilePicture = {profile_picture}
+                    comment = {comment}
+                  />
+                )
+              })}
+            </div>
             <CommentInput postId = {postId} />
           </Wrapper>
         </Collapse>
@@ -38,7 +40,6 @@ const CommentsArea = (props)=>{
 
     )
   } else {
-    console.log("entrou no else")
     return(  
       <CommentsContainer>
         <Collapse isOpened={commentsVisible} >

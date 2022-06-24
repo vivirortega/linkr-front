@@ -152,7 +152,8 @@ const Post = ({ publishing, getPosts }) => {
         setComments, 
         commentsVisible,
         numberOfComments, 
-        setNumberOfComments
+        setNumberOfComments,
+        postAuthor: user_name
         }}>
         <RepostLabel display = {display} >
           <div className="reposterInfo">
