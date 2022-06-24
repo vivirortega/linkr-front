@@ -259,6 +259,27 @@ const Wrapper = styled.div`
     max-height: 250px;
     overflow-y: scroll;
   }
+
+  /* width */
+  .commentsWrapper::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  .commentsWrapper::-webkit-scrollbar-track {
+    background: #202020;
+  }
+
+  /* Handle */
+  .commentsWrapper::-webkit-scrollbar-thumb {
+    background: #151515;
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  .commentsWrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 `
 
 const TextFollowDiv = styled.div`

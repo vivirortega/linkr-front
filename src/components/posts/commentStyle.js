@@ -93,6 +93,27 @@ export const CommentInputArea = styled.div`
     font-style: italic;
   }
 
+    /* width */
+  .textarea::-webkit-scrollbar {
+  width: 5px;
+  }
+
+  /* Track */
+  .textarea::-webkit-scrollbar-track {
+    background: #202020;
+  }
+
+  /* Handle */
+  .textarea::-webkit-scrollbar-thumb {
+    background: #151515;
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  .textarea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   .iconWrapper {
     width: 39px;
     height: 39px;
