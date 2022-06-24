@@ -73,7 +73,7 @@ export default function Likes(props) {
             }
             <p data-tip=''  data-for={post_id.toString()} className="likeCount">{likeCount} Likes</p>
             <ReactTooltip id={post_id.toString()} place="bottom" type="light" effect="solid">
-                {likeCount? tooltipText[0] : tooltipText[1]}
+                {liked? tooltipText[0] : tooltipText[1]}
             </ReactTooltip>
         </>
 

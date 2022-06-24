@@ -201,6 +201,10 @@ const MainLinkIconsWrapper = styled.div`
 
   display: flex;
   justify-content: space-between;
+  
+  ShareIcon{
+    background-color:white 
+  }
 `
 
 const IconsContainer = styled.div`
