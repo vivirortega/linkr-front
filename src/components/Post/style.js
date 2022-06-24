@@ -45,6 +45,7 @@ const RepostLabel = styled.div`
 
 const PostWrapper = styled.section`
   position: relative;
+  z-index: 1;
   width: 100%;
   background-color: #171717;
   border-radius: 16px;
@@ -399,5 +400,7 @@ const OverlayStyle = styled.div`
   z-index: 3500;
   background-color: rgba(255, 255, 255, 0.9);
 `;
+
+
 
 export { Article, PostWrapper, RepostLabel, MainLinkIconsWrapper, IconsContainer, MainLink, ModalStyle, OverlayStyle };

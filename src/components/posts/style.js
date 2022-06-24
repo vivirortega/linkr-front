@@ -20,7 +20,6 @@ const PostWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
   @media (max-width: 500px) {
     border-radius: 0px;
@@ -235,6 +234,54 @@ const LoadDiv = styled.div`
   }
 `;
 
+const CommentsContainer = styled.section`
+  width: 100%;
+  height: fit-content;
+  background-color: #202020;
+  position:relative;
+  top: -30px;
+  z-index: 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  color: #fff;
+  display: ${props => props.display};
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  .ReactCollapse--collapse {
+    transition: height 700ms;
+  }
+`
+const Wrapper = styled.div`
+  margin-top: 32px;
+
+  .commentsWrapper {
+    max-height: 250px;
+    overflow-y: scroll;
+  }
+
+  /* width */
+  .commentsWrapper::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  .commentsWrapper::-webkit-scrollbar-track {
+    background: #202020;
+  }
+
+  /* Handle */
+  .commentsWrapper::-webkit-scrollbar-thumb {
+    background: #151515;
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  .commentsWrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+`
+
 const TextFollowDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -248,4 +295,4 @@ const TextFollowDiv = styled.div`
     color: #6d6d6d;
   }
 `;
-export { Article, PostWrapper, MainLink, LoadDiv, TextFollowDiv };
+export { Article, PostWrapper, MainLink, LoadDiv, TextFollowDiv, CommentsContainer, Wrapper };
