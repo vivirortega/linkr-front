@@ -21,6 +21,8 @@ const Post = ({ publishing, getPosts }) => {
   const textAreaRef = useRef();
 
   const {
+    user_id,
+    repost_user_id,
     post_id,
     user_name,
     icon,
@@ -70,7 +72,6 @@ const Post = ({ publishing, getPosts }) => {
     try {
       setLoading(true);
       const response = await axios.patch(URL, data, config);
-      console.log(response.data);
       setLoading(false);
       getPosts();
     } catch (error) {
@@ -126,12 +127,11 @@ const Post = ({ publishing, getPosts }) => {
       <RepostLabel display = {display} >
         <div className="reposterInfo">
           <FaRetweet />
-          <p>Re-posted by <span>{user_name_repost}</span></p>
+          <p>Re-posted by <span onClick={()=> navigate(`/users/${repost_user_id}`)}>{user_name_repost}</span></p>
         </div>
       </RepostLabel>
       <PostWrapper>
         
-        {console.log(user_name_repost)};
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -169,10 +169,10 @@ const Post = ({ publishing, getPosts }) => {
           </div>
         )}
         <div className="imgInfoWrapper">
-          <img src={icon} alt="icon" />
+          <img src={icon} alt="icon" onClick={()=> navigate(`/users/${user_id}`)}/>
           <div className="col">
             <div className="content">
-              <span className="user">{user_name}</span>
+              <span className="user" onClick={()=> navigate(`/users/${user_id}`)}>{user_name}</span>
             </div>
             {editing ? (
               <textarea

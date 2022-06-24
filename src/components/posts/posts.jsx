@@ -73,7 +73,6 @@ export default function Posts(props) {
 
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
-    console.log(URL);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,7 +88,6 @@ export default function Posts(props) {
         setText(message)
       }
       setPosts(response.data);
-      console.log(response.data);
       setReload(!reload);
     } catch (error) {
       console.log('erro ao pegar os posts', error);
@@ -141,7 +139,9 @@ export default function Posts(props) {
       <Article>
         {posts.map(
           (
-            {
+            { 
+              user_id,
+              repost_user_id,
               post_id,
               user_name,
               icon,
@@ -161,6 +161,8 @@ export default function Posts(props) {
               <Post
                 key={index}
                 publishing={{
+                  user_id,
+                  repost_user_id,
                   post_id,
                   user_name,
                   icon,
