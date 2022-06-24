@@ -23,16 +23,18 @@ export default function UserPage() {
     };
 
     useEffect(()=> {
-      const promise = axios.get(process.env.REACT_APP_API_URL+'/user/'+id);
+      const promise = axios.get(process.env.REACT_APP_API_URL+'/user/'+id, config);
       promise.then(response => {
         const user = response.data[0];
         setName(user.user_name)
         setImg(user.url)
+        const userIsFollowing = parseInt(user.is_following);
+        setFollowing(!!userIsFollowing);
       })
     })
     
     function insertFollow(){
-
+      
       const promise = axios.post(process.env.REACT_APP_API_URL + '/follows/' + id, {}, config);
         promise.then((response) => {
         setFollowing(true); //true
@@ -47,7 +49,7 @@ export default function UserPage() {
     }
 
     function removeFollow(){ 
-      const promise = axios.delete(process.env.REACT_APP_API_URL + '/follows/', config);
+      const promise = axios.delete(process.env.REACT_APP_API_URL + '/follows/' + id, config);
       promise.then((response) => {
         setFollowing(false); //false
         console.log("sucesso ao parar de seguir", !following);
@@ -81,3 +83,4 @@ export default function UserPage() {
       </>
     )
 }
+
