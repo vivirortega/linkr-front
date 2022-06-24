@@ -42,7 +42,8 @@ const Post = ({ publishing, getPosts }) => {
   const [descriptionEdit, setDescriptionEdit] = useState(description);
   const [loading, setLoading] = useState(false);
   const [commentsVisible, setCommentsVisible] = useState(false);
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
+  const [numberOfComments, setNumberOfComments] = useState(comment_count);
   const navigate = useNavigate();
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -145,7 +146,14 @@ const Post = ({ publishing, getPosts }) => {
   const display = user_name_repost? 'flex' : 'none';
   return (
     <>
-      <CommentContext.Provider value={{handleComments, comments, setComments, commentsVisible}}>
+      <CommentContext.Provider value={{
+        handleComments, 
+        comments, 
+        setComments, 
+        commentsVisible,
+        numberOfComments, 
+        setNumberOfComments
+        }}>
         <RepostLabel display = {display} >
           <div className="reposterInfo">
             <FaRetweet />
@@ -267,7 +275,7 @@ const Post = ({ publishing, getPosts }) => {
                   }}
                 >
                   <CommentIcon
-                    comment_count = {comment_count}
+                    comment_count = {numberOfComments}
                   />
                 </div>
                 <ShareIcon />

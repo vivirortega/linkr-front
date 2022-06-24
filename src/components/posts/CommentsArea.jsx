@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { ThreeDots } from 'react-loader-spinner';
 import {Collapse} from 'react-collapse';
 import { useContext } from 'react';
 
