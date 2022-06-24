@@ -221,6 +221,7 @@ const MainLink = styled.div`
 
 const CommentsContainer = styled.section`
   width: 100%;
+  height: fit-content;
   background-color: #202020;
   position:relative;
   top: -30px;

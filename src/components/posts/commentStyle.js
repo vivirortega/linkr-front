@@ -53,4 +53,58 @@ export const CommentContent = styled.div`
   color: #acacac;
 `
 
+export const CommentInputArea = styled.div`
+  width: 90%;
+  height: 50px;
+  margin:auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+
+  display:flex;
+  justify-content:flex-start;
+  align-items: flex-start;
+  gap: 18px;
+
+  .input-area {
+    flex: 1;
+    height: fit-content;
+    background-color: #252525;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .textarea {
+    flex: 1;
+    min-height: 39px;
+    max-height: 54px;
+    overflow-y: scroll;
+    background-color: transparent;
+    border:none;
+    outline: none;
+    font-family: 'lato';
+    color: #acacac;
+    font-size: 13px;
+    padding-left: 15px;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    
+  }
+
+  .textarea[contenteditable]:empty::before  {
+    content: 'write a comment';
+    font-style: italic;
+  }
+
+  .iconWrapper {
+    width: 39px;
+    height: 39px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+`
 

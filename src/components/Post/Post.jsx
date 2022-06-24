@@ -12,6 +12,7 @@ import Likes from '../posts/likes.jsx';
 import CommentIcon from '../posts/CommentIcon';
 import ShareIcon from '../posts/ShareIcon';
 import UserContext from '../../contexts/usercontext';
+import CommentContext from '../../contexts/commentContext';
 import CommentsArea from '../posts/CommentsArea';
 
 import Modal from 'react-modal';
@@ -129,7 +130,7 @@ const Post = ({ publishing, getPosts }) => {
       const response = (await axios.get(URL, config)).data;
       return response;
     } catch (error) {
-      alert(error.message);
+      return [];
     }
   }
 
@@ -144,149 +145,147 @@ const Post = ({ publishing, getPosts }) => {
   const display = user_name_repost? 'flex' : 'none';
   return (
     <>
-      <RepostLabel display = {display} >
-        <div className="reposterInfo">
-          <FaRetweet />
-          <p>Re-posted by <span>{user_name_repost}</span></p>
-        </div>
-      </RepostLabel>
-      <PostWrapper>
+      <CommentContext.Provider value={{handleComments, comments, setComments, commentsVisible}}>
+        <RepostLabel display = {display} >
+          <div className="reposterInfo">
+            <FaRetweet />
+            <p>Re-posted by <span>{user_name_repost}</span></p>
+          </div>
+        </RepostLabel>
+        <PostWrapper>
         
         
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          contentLabel="Delete Modal"
-          className="_"
-          overlayClassName="_"
-          contentElement={(props, children) => (
-            <ModalStyle {...props}>{children}</ModalStyle>
-          )}
-          overlayElement={(props, contentElement) => (
-            <OverlayStyle {...props}>{contentElement}</OverlayStyle>
-          )}
-        >
-          <h1>Are you sure you want to delete this post?</h1>
-          <div className="buttons">
-            <button className="white" onClick={closeModal}>
-              No, go back
-            </button>
-            <button className="blue" onClick={handleDelete}>
-              {loading ? <ThreeDots color="#fff" /> : 'Yes, delete'}
-            </button>
-          </div>
-        </Modal>
-        {user_name === user.name && (
-          <div className="icons">
-            <BsFillPencilFill onClick={openEditor} size={15} fill={'#FFFFFF'} />
-            <BsFillTrashFill
-              onClick={() => {
-                openModal();
-              }}
-              size={15}
-              fill={'#FFFFFF'}
-            />
-          </div>
-        )}
-        <div className="imgInfoWrapper">
-          <img src={icon} alt="icon" />
-          <div className="col">
-            <div className="content">
-              <span className="user">{user_name}</span>
-            </div>
-            {editing ? (
-              <textarea
-                ref={textAreaRef}
-                style={
-                  textAreaRef.current
-                    ? { height: textAreaRef.current.scrollHeight }
-                    : { height: '30px' }
-                }
-                onFocus={(e) => {
-                  e.currentTarget.setSelectionRange(
-                    e.currentTarget.value.length,
-                    e.currentTarget.value.length,
-                  );
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    handleEdit();
-                  }
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Escape') {
-                    setEditing(false);
-                  }
-                }}
-                value={descriptionEdit}
-                onChange={(e) => setDescriptionEdit(e.target.value)}
-                disabled={loading}
-              />
-            ) : (
-              <div className="descriptionContainer">
-                <ReactHashtag
-                  renderHashtag={(hashtagValue) => (
-                    <div
-                      key={hashtagValue + (Math.random() * 100).toString()}
-                      className="hashtag"
-                      onClick={() => {
-                        const hashtagArr = hashtagValue.split('#');
-                        const hashtagText = hashtagArr[hashtagArr.length - 1];
-                        navigate(`/hashtag/${hashtagText}`);
-                      }}
-                    >
-                      {hashtagValue}
-                    </div>
-                  )}
-                >
-                  {description}
-                </ReactHashtag>
-              </div>
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            contentLabel="Delete Modal"
+            className="_"
+            overlayClassName="_"
+            contentElement={(props, children) => (
+              <ModalStyle {...props}>{children}</ModalStyle>
             )}
-          </div>
-        </div>
-        <MainLinkIconsWrapper>
-            <IconsContainer>
-              <div className="likeIcon">
-                <Likes
-                  tooltipText={tooltipText}
-                  liked={liked_by_me}
-                  like_count={like_count}
-                  post_id={post_id}
-                />
-              </div>
-              <div className="iconWrapper"
-                onClick = {async ()=>{
-                  const response = await handleComments();
-                  setComments(response);
-                  setCommentsVisible(!commentsVisible);
+            overlayElement={(props, contentElement) => (
+              <OverlayStyle {...props}>{contentElement}</OverlayStyle>
+            )}
+          >
+            <h1>Are you sure you want to delete this post?</h1>
+            <div className="buttons">
+              <button className="white" onClick={closeModal}>
+                No, go back
+              </button>
+              <button className="blue" onClick={handleDelete}>
+                {loading ? <ThreeDots color="#fff" /> : 'Yes, delete'}
+              </button>
+            </div>
+          </Modal>
+          {user_name === user.name && (
+            <div className="icons">
+              <BsFillPencilFill onClick={openEditor} size={15} fill={'#FFFFFF'} />
+              <BsFillTrashFill
+                onClick={() => {
+                  openModal();
                 }}
-              >
-                <CommentIcon 
-                  comment_count = {comment_count}
-                />
+                size={15}
+                fill={'#FFFFFF'}
+              />
+            </div>
+          )}
+          <div className="imgInfoWrapper">
+            <img src={icon} alt="icon" />
+            <div className="col">
+              <div className="content">
+                <span className="user">{user_name}</span>
               </div>
-              <ShareIcon />
-
-            </IconsContainer>
-            <MainLink>
-              <a href={url} target="_blank" rel="noreferrer">
-                <div className="texts">
-                  <p>{title_url}</p>
-                  <span>{description_url}</span>
-                  <span className="url">{url}</span>
+              {editing ? (
+                <textarea
+                  ref={textAreaRef}
+                  style={
+                    textAreaRef.current
+                      ? { height: textAreaRef.current.scrollHeight }
+                      : { height: '30px' }
+                  }
+                  onFocus={(e) => {
+                    e.currentTarget.setSelectionRange(
+                      e.currentTarget.value.length,
+                      e.currentTarget.value.length,
+                    );
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleEdit();
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
+                      setEditing(false);
+                    }
+                  }}
+                  value={descriptionEdit}
+                  onChange={(e) => setDescriptionEdit(e.target.value)}
+                  disabled={loading}
+                />
+              ) : (
+                <div className="descriptionContainer">
+                  <ReactHashtag
+                    renderHashtag={(hashtagValue) => (
+                      <div
+                        key={hashtagValue + (Math.random() * 100).toString()}
+                        className="hashtag"
+                        onClick={() => {
+                          const hashtagArr = hashtagValue.split('#');
+                          const hashtagText = hashtagArr[hashtagArr.length - 1];
+                          navigate(`/hashtag/${hashtagText}`);
+                        }}
+                      >
+                        {hashtagValue}
+                      </div>
+                    )}
+                  >
+                    {description}
+                  </ReactHashtag>
                 </div>
-                <img src={image_url} className="image-url" alt="icon" />
-              </a>
-            </MainLink>
-          </MainLinkIconsWrapper>
-      </PostWrapper>
-      <CommentsArea 
-        commentsVisible = {commentsVisible} 
-        comments = {comments} 
-      />
+              )}
+            </div>
+          </div>
+          <MainLinkIconsWrapper>
+              <IconsContainer>
+                <div className="likeIcon">
+                  <Likes
+                    tooltipText={tooltipText}
+                    liked={liked_by_me}
+                    like_count={like_count}
+                    post_id={post_id}
+                  />
+                </div>
+                <div className="iconWrapper"
+                  onClick = {async ()=>{
+                    const response = await handleComments();
+                    setComments({response, post_id});
+                    setCommentsVisible(!commentsVisible);
+                  }}
+                >
+                  <CommentIcon
+                    comment_count = {comment_count}
+                  />
+                </div>
+                <ShareIcon />
+              </IconsContainer>
+              <MainLink>
+                <a href={url} target="_blank" rel="noreferrer">
+                  <div className="texts">
+                    <p>{title_url}</p>
+                    <span>{description_url}</span>
+                    <span className="url">{url}</span>
+                  </div>
+                  <img src={image_url} className="image-url" alt="icon" />
+                </a>
+              </MainLink>
+            </MainLinkIconsWrapper>
+        </PostWrapper>
+        <CommentsArea />
+      </CommentContext.Provider>
     </>
 
 
