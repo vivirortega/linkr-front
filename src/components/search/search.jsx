@@ -24,6 +24,7 @@ export default function Search() {
         return setResult([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[target])
+
     return (
         <InputDiv>
         <DebounceInput
@@ -37,7 +38,7 @@ export default function Search() {
           />
           <List>
             {result?.map((user,index) => {
-                if(user==='not found') {
+                if(user.message) {
                     return (
                         <div className="user" key={index}>
                             <p>No result</p>
@@ -47,7 +48,10 @@ export default function Search() {
                 return (
                     <div className="user" onClick={()=>navigate(`/users/${user.id}`)} key={index}>
                         <img src={user.url} alt={user.url} key={index}/>
-                        <p>{user.user_name}</p></div>
+                        <div className="text">
+                        <h3>{user.user_followed?'• following':''}</h3><p>{user.user_name}</p>
+                        </div>
+                        </div>
                 )
             })}
           </List>

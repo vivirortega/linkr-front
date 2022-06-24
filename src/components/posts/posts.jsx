@@ -76,7 +76,6 @@ export default function Posts(props) {
 
   const getPosts = async () => {
     const URL = `${process.env.REACT_APP_API_URL}${url}`;
-    console.log(URL);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -172,7 +171,9 @@ export default function Posts(props) {
       <Article>
         {posts.map(
           (
-            {
+            { 
+              user_id,
+              repost_user_id,
               post_id,
               user_name,
               icon,
@@ -193,6 +194,8 @@ export default function Posts(props) {
               <Post
                 key={index}
                 publishing={{
+                  user_id,
+                  repost_user_id,
                   post_id,
                   user_name,
                   icon,
