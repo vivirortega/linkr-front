@@ -2,12 +2,12 @@ import { FaRetweet } from 'react-icons/fa';
 
 
 const ShareIcon = (props)=> {
-  const {callback} = props;
+  const {callback,repost_count} = props;
 
   return(
     <div className ="iconWrapper">
       <FaRetweet onClick={()=>callback()}/>
-      <p>3 re-posts</p>
+      <p>{repost_count} re-posts</p>
     </div>
 
   )
