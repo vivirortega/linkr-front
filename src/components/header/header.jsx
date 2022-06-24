@@ -8,7 +8,7 @@ import Search from '../search/search';
 
 export default function Head() {
   const [isOpen, setIsOpen] = useState(false);
-  const { setToken, user, setUser } = useContext(UserContext);
+  const { setToken, user, setUser, setLoggedUserFollows } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,7 +21,8 @@ export default function Head() {
   return (
     <Header>
       <div onClick = {()=>{
-        navigate('/')
+        setLoggedUserFollows([]);
+        navigate('/');
       }}>
       <h1>linkr</h1>
       </div>
