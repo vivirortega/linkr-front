@@ -1,12 +1,12 @@
 import { AiOutlineComment } from 'react-icons/ai';
 
 
-const CommentIcon = ()=> {
-
+const CommentIcon = (props)=> {
+  const{comment_count} = props
   return(
     <div className ="iconWrapper">
       <AiOutlineComment />
-      <p>3 comments</p>
+      <p>{comment_count} comments</p>
     </div>
 
   )

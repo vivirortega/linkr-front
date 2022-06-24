@@ -13,7 +13,7 @@ export default function UserPage() {
     const {id} = useParams();
     const [name,setName] = useState('');
     const [image,setImg] = useState('');
-    const [following, setFollowing] = useState(true);
+    const [following, setFollowing] = useState(false);
     const [isLoadingFollow, setIsLoadingFollow] = useState(false);
     const { token, user } = useContext(UserContext);
      const config = {
@@ -23,23 +23,21 @@ export default function UserPage() {
     };
 
     useEffect(()=> {
-      const promise = axios.get(process.env.REACT_APP_API_URL+'/user/'+id);
+      const promise = axios.get(process.env.REACT_APP_API_URL+'/user/'+id, config);
       promise.then(response => {
         const user = response.data[0];
         setName(user.user_name)
         setImg(user.url)
+        const userIsFollowing = parseInt(user.is_following);
+        setFollowing(!!userIsFollowing);
       })
     })
     
     function insertFollow(){
-      const data = {
-        follower: user.id,
-        following: id
-      }
-
-      const promise = axios.post(process.env.REACT_APP_API_URL + '/follows/', data, config);
+      
+      const promise = axios.post(process.env.REACT_APP_API_URL + '/follows/' + id, {}, config);
         promise.then((response) => {
-        setFollowing(!following); //true
+        setFollowing(true); //true
         console.log("sucesso ao seguir", !following);
       })
 
@@ -50,15 +48,10 @@ export default function UserPage() {
       })
     }
 
-    function removeFollow(){
-      const data = {
-        follower: user.id,
-        following: id
-      }
-      
-      const promise = axios.patch(process.env.REACT_APP_API_URL + '/follows/', data, config);
+    function removeFollow(){ 
+      const promise = axios.delete(process.env.REACT_APP_API_URL + '/follows/' + id, config);
       promise.then((response) => {
-        setFollowing(!following); //false
+        setFollowing(false); //false
         console.log("sucesso ao parar de seguir", !following);
       })
 
@@ -90,3 +83,4 @@ export default function UserPage() {
       </>
     )
 }
+
