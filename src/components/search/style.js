@@ -7,7 +7,7 @@ export const OutFocus = styled.div`
   left:0;
   width:100vw;
   height:100vh;
-  z-index:2;
+  z-index:3;
 `;
 
 export const InputDiv = styled.div`
@@ -68,7 +68,7 @@ export const List = styled.div`
   border-bottom-right-radius: 8px;
   overflow-y: scroll;
   overflow-x: hidden;
-  z-index:3;
+  z-index:6;
   .user {
     width: 100%;
     height: 55px;

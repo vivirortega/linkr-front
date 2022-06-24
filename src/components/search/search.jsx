@@ -50,7 +50,7 @@ export default function Search() {
                     <div className="user" onClick={()=>navigate(`/users/${user.id}`)} key={index}>
                         <img src={user.url} alt={user.url} key={index}/>
                         <div className="text">
-                        <h3>{user.user_followed?'• following':''}</h3><p>{user.user_name}</p>
+                        <h3>{user.user_followed!==null?'• following':''}</h3><p>{user.user_name}</p>
                         </div>
                         </div>
                 )
