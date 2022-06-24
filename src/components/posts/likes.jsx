@@ -28,11 +28,16 @@ export default function Likes(props) {
     useEffect(() =>{
         if(like.postId === post_id){
             if(like.liked){
-                setLiked(true)
+                if(!liked){
+                    setLiked(true)
                 setLikeCount(likeCount + 1)
+                }
             } else{
-                setLiked(false)
+                if(liked){
+                    setLiked(false)
                 setLikeCount(likeCount - 1)
+                }
+                
             }
         }
     },[like])
@@ -47,6 +52,7 @@ export default function Likes(props) {
                         const promise = axios.delete(baseUrl + '/like', { headers, data })
                         promise.then((e) => {
                             setLiked(false)
+                            setLikeCount(likeCount - 1)
                             setLike({postId:post_id , liked:false})
                         })
                         promise.catch((e) => {
@@ -65,6 +71,7 @@ export default function Likes(props) {
                         const promise = axios.post(baseUrl + '/like', { data }, { headers })
                         promise.then(() => {
                             setLiked(true)
+                            setLikeCount(likeCount + 1)
                             setLike({postId:post_id , liked:true})
                         })
                         setIsConnecting(false)
