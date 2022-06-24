@@ -15,7 +15,7 @@ export default function UserPage() {
     const [image,setImg] = useState('');
     const [following, setFollowing] = useState(false);
     const [isLoadingFollow, setIsLoadingFollow] = useState(false);
-    const { token, user } = useContext(UserContext);
+    const { token } = useContext(UserContext);
      const config = {
       headers: {
         Authorization: `Bearer ${token}`,

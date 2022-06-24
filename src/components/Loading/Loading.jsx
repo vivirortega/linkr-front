@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Oval } from 'react-loader-spinner';
 import * as S from './style.js';
 

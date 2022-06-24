@@ -118,7 +118,7 @@ const Post = ({ publishing, getPosts }) => {
 
     try {
       setLoading(true);
-      const response = await axios.patch(URL, data, config);
+      await axios.patch(URL, data, config);
       setLoading(false);
       getPosts();
     } catch (error) {

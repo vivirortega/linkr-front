@@ -35,6 +35,7 @@ export default function Likes(props) {
                 setLikeCount(likeCount - 1)
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[like])
 
     return (
