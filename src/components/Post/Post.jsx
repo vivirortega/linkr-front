@@ -38,7 +38,8 @@ const Post = ({ publishing, getPosts }) => {
     liked_by_me,
     like_count,
     user_name_repost,
-    comment_count
+    comment_count,
+    repost_count,
   } = publishing;
 
   const [editing, setEditing] = useState(false);
@@ -323,7 +324,7 @@ const Post = ({ publishing, getPosts }) => {
                     comment_count = {numberOfComments}
                   />
                 </div>
-                <ShareIcon callback={openRepostModal} />
+                <ShareIcon repost_count={repost_count} callback={openRepostModal} />
               </IconsContainer>
               <MainLink>
                 <a href={url} target="_blank" rel="noreferrer">
