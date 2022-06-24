@@ -1,10 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
 import useInterval from 'use-interval';
+import InfiniteScroll from 'react-infinite-scroller';
 import UserContext from '../../contexts/usercontext';
-import { isEqual, includesObject } from '../../utils/isEqual.js';
+import { includesObject } from '../../utils/isEqual.js';
 
 import NewPostButton from '../NewPostButton/NewPostButton';
 import Post from '../Post/Post';
+import Loading from '../Loading/Loading';
 import { Article, LoadDiv, TextFollowDiv } from './style';
 
 import axios from 'axios';
@@ -20,6 +22,7 @@ export default function Posts(props) {
   const [reload, setReload] = useState(true);
 
   const [newPosts, setNewPosts] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const [text, setText] = useState('');
 
   useInterval(() => {
@@ -80,12 +83,12 @@ export default function Posts(props) {
     };
     try {
       const response = await axios.get(URL, config);
-      if(!response.data.length) {
-        setText('No posts found from your friends.')
+      if (!response.data.length) {
+        setText('No posts found from your friends.');
       }
-      if(response.data.message) {
-        const {message} = response.data
-        setText(message)
+      if (response.data.message) {
+        const { message } = response.data;
+        setText(message);
       }
       setPosts(response.data);
       setReload(!reload);
@@ -96,12 +99,35 @@ export default function Posts(props) {
       );
     }
   };
+
+  const loadMore = async () => {
+    const offset = posts.length;
+    const URL = `${process.env.REACT_APP_API_URL}${url}?offset=${offset}`;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const response = await axios.get(URL, config);
+      if (!response.data.length) {
+        setHasMore(false);
+      }
+      setPosts([...posts, ...response.data]);
+    } catch (error) {
+      console.log('erro ao pegar os posts', error);
+      alert(
+        'An error occured while trying to fetch the posts, please refresh the page',
+      );
+    }
+  };
+
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
-  if (text!=='') {
+  if (text !== '') {
     return (
       <TextFollowDiv>
         <span
@@ -116,17 +142,23 @@ export default function Posts(props) {
       </TextFollowDiv>
     );
   }
-  if (text===''&& !posts.length) {
-   return( 
+  if (text === '' && !posts.length) {
+    return (
       <LoadDiv>
-          <TailSpin color="grey" />
-          <h2>Loading posts...</h2>
+        <TailSpin color="grey" />
+        <h2>Loading posts...</h2>
       </LoadDiv>
-   )
+    );
   }
 
   return (
-    <>
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={loadMore}
+      hasMore={hasMore}
+      loader={<Loading key={posts.length} />}
+      useWindow={true}
+    >
       {newPosts > 0 && (
         <NewPostButton
           handleClick={() => {
@@ -154,6 +186,7 @@ export default function Posts(props) {
               liked_by_me,
               like_count,
               user_name_repost,
+              comment_count,
             },
             index,
           ) => {
@@ -175,6 +208,7 @@ export default function Posts(props) {
                   liked_by_me,
                   like_count,
                   user_name_repost,
+                  comment_count,
                 }}
                 getPosts={getPosts}
               />
@@ -182,6 +216,6 @@ export default function Posts(props) {
           },
         )}
       </Article>
-    </>
+    </InfiniteScroll>
   );
 }
