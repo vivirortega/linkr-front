@@ -122,6 +122,9 @@ export default function Posts(props) {
     }
   };
 
+
+
+
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
