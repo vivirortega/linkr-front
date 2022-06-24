@@ -20,6 +20,7 @@ Modal.setAppElement('#root');
 
 const Post = ({ publishing, getPosts }) => {
   const { user, token } = useContext(UserContext);
+  const { name: loggedUserName }= user;
   const textAreaRef = useRef();
 
   const {
@@ -200,7 +201,7 @@ const Post = ({ publishing, getPosts }) => {
         <RepostLabel display = {display} >
           <div className="reposterInfo">
             <FaRetweet />
-            <p>Re-posted by <span>{user_name_repost}</span></p>
+            <p>Re-posted by <span>{user_name_repost === loggedUserName? "you": user_name_repost}</span></p>
           </div>
         </RepostLabel>
         <PostWrapper>
